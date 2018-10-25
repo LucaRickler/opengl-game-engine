@@ -7,7 +7,7 @@ TARGET := $(TARGETDIR)/runner
 TESTTARGET := bin/test
 
 CFLAGS := -g -Wall -std=c++0x -Wmultichar
-LIB := -pthread -lncursesw 
+LIB := -pthread -lglfw -ldl
 INC := -I include
  
 SRCEXT := cpp
@@ -21,7 +21,6 @@ TINC := $(INC) -I tst
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	@mkdir $(TARGETDIR)
 	@echo "Linking..."
 	@echo "$(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
 
@@ -39,7 +38,6 @@ clean:
 
 # Tests
 test: $(TOBJECTS)
-	@mkdir $(TARGETDIR)
 	@echo "Linking..."
 	@echo "$(CC) $^ -o $(TESTTARGET) $(LIB)"; $(CC) $^ -o $(TESTTARGET) $(LIB)
 
