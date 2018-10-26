@@ -1,15 +1,11 @@
 #include <exception.hpp>
 
-Exception::Exception() : exception() {}
+Exception::Exception() {}
 
-Exception::Exception(const char* message) : exception() {
-  this->_message = message;
-}
+Exception::Exception(std::string message) : _message(message.c_str()) {}
 
-Exception::~Exception() {
-  delete this->_message;
-}
+Exception::~Exception() {}
 
-const char* Exception::what() const noexcept {
+std::string Exception::what() const throw() {
   return this->_message;
 }

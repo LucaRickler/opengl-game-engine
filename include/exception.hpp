@@ -1,17 +1,17 @@
 #ifndef EXCEPTION_HPP
 #define EXCEPTION_HPP
 
-#include <exception>
+#include <string>
 
-class Exception : public std::exception {
+class Exception {
 public:
   Exception();
-  Exception(const char* message);
+  Exception(std::string message);
   virtual ~Exception();
 
-  virtual const char* what() const noexcept;
+  virtual std::string what() const throw();
 private:
-  const char* _message;
+  std::string _message;
 };
 
 #endif
