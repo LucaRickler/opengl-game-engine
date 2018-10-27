@@ -9,6 +9,7 @@
 class Exception;
 class Window;
 class Shader;
+class Vertex;
 class Mesh;
 
 #endif

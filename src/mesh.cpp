@@ -1,9 +1,10 @@
 #include <mesh.hpp>
+#include <vertex.hpp>
+#include <algorithm>
+
 #include <iostream>
 
-Mesh::Mesh() {
-
-}
+Mesh::Mesh() {}
 
 Mesh::~Mesh() {
   this->RemoveBuffers();
@@ -20,29 +21,39 @@ void Mesh::UnloadMemory() {
   glBindVertexArray(0);
 }
 
-void Mesh::AddTri(float* v1, float* v2, float* v3) {
-  this->AddVertex(v1);
-  this->_indices.push_back(this->_vertices.size()/8 -1);
-  std::cout << this->_vertices.size()/8 -1 << std:: endl;
-  this->AddVertex(v2);
-  this->_indices.push_back(this->_vertices.size()/8 -1);
-  std::cout << this->_vertices.size()/8 -1 << std:: endl;
-  this->AddVertex(v3);
-  this->_indices.push_back(this->_vertices.size()/8 -1);
-  std::cout << this->_vertices.size()/8 -1 << std:: endl;
+void Mesh::AddTri(Vertex* v1, Vertex* v2, Vertex* v3) {
+  int id;
+  id = this->AddVertex(v1);
+  this->_indices.push_back(id);
+  std::cout << id << std:: endl;
+  id = this->AddVertex(v2);
+  this->_indices.push_back(id);
+  std::cout << id << std:: endl;
+  id = this->AddVertex(v3);
+  this->_indices.push_back(id);
+  std::cout << id << std:: endl;
 
-  std::cout << this->_vertices.size() << std:: endl; 
-  std::cout << this->_indices.size() << std::endl;
+  // std::cout << this->_v_pointers.size() << std:: endl;
+  // std::cout << this->_indices.size() << std::endl;
 
   //this->RemoveBuffers();
   this->GenerateBuffers();
 }
 
-void Mesh::AddVertex(float* vertex) {
-  for(int i = 0; i < 8; i++) {
-    this->_vertices.push_back(vertex[i]);
+int Mesh::AddVertex(Vertex* vertex) {
+  auto index = std::find(this->_v_pointers.begin(), this->_v_pointers.end(), vertex);
+  if (index != this->_v_pointers.end())
+    return index - this->_v_pointers.begin();
+  
+  this->_v_pointers.push_back(vertex);
+  float* array = vertex->GetArray();
+  
+  for(int i = 0; i < 11; i++) {
+    this->_vertices.push_back(array[i]);
   }
-  delete[] vertex;
+  delete[] array;
+
+  return this->_v_pointers.size() -1;
 }
 
 void Mesh::GenerateBuffers() {
@@ -57,14 +68,17 @@ void Mesh::GenerateBuffers() {
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * _indices.size(), _indices.data(), GL_STATIC_DRAW);
 
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3* sizeof(float)));
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3* sizeof(float)));
   glEnableVertexAttribArray(1);
 
-  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6* sizeof(float)));
+  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6* sizeof(float)));
   glEnableVertexAttribArray(2);
+
+  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(8* sizeof(float)));
+  glEnableVertexAttribArray(3);
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);

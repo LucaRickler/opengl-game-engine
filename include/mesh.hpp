@@ -12,11 +12,12 @@ public:
   void Draw();
   static void UnloadMemory();
 
-  void AddVertex(float* vertex);
-  void AddTri(float* v1, float* v2, float* v3);
+  int AddVertex(Vertex* vertex);
+  void AddTri(Vertex* v1, Vertex* v2, Vertex* v3);
 private:
   unsigned int VAO, VBO, EBO;
 
+  std::vector<Vertex*> _v_pointers;
   std::vector<float> _vertices;
   std::vector<int> _indices;
 
