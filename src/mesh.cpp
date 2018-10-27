@@ -25,16 +25,10 @@ void Mesh::AddTri(Vertex* v1, Vertex* v2, Vertex* v3) {
   int id;
   id = this->AddVertex(v1);
   this->_indices.push_back(id);
-  std::cout << id << std:: endl;
   id = this->AddVertex(v2);
   this->_indices.push_back(id);
-  std::cout << id << std:: endl;
   id = this->AddVertex(v3);
   this->_indices.push_back(id);
-  std::cout << id << std:: endl;
-
-  // std::cout << this->_v_pointers.size() << std:: endl;
-  // std::cout << this->_indices.size() << std::endl;
 
   //this->RemoveBuffers();
   this->GenerateBuffers();
