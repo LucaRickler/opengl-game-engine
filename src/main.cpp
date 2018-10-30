@@ -19,7 +19,7 @@ int main()
     return -1;
   }
 
-  Shader shader;
+  DrawShader shader;
   try {
     shader.Load("./shaders/test.vert","./shaders/test.frag");
   } catch(Exception& e) {

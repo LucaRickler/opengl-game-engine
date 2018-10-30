@@ -4,6 +4,7 @@
 #include <exception.hpp>
 #include <window.hpp>
 #include <shader.hpp>
+#include <draw-shader.hpp>
 #include <vertex.hpp>
 #include <mesh.hpp>
 #include <texture.hpp>
