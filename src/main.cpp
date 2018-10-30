@@ -21,21 +21,32 @@ int main()
 
   DrawShader shader;
   try {
-    shader.Load("./shaders/test.vert","./shaders/test.frag");
+    shader.Load("./shaders/test.vert","./shaders/test.2.frag");
   } catch(Exception& e) {
     std::cout << e.what() << std::endl;
     return -1;
   }
+
+
+  ComputeShader compute;
+  try {
+    compute.Load("./shaders/test.comp");
+  } catch(Exception& e) {
+    std::cout << e.what() << std::endl;
+    return -1;
+  }
+
+  Texture2D tex(512,512);
 
   Vertex* v0 = new Vertex(new glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 0.0f), zero3);
   Vertex* v1 = new Vertex(new glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 0.0f), zero3);
   Vertex* v2 = new Vertex(new glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 1.0f), zero3);
   Vertex* v3 = new Vertex(new glm::vec4(1.0f,  1.0f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 1.0f), zero3);
   
-  Vertex* v4 = new Vertex(new glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 0.0f), zero3);
-  Vertex* v5 = new Vertex(new glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 0.0f), zero3);
-  Vertex* v6 = new Vertex(new glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 1.0f), zero3);
-  Vertex* v7 = new Vertex(new glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 1.0f), zero3);
+  Vertex* v4 = new Vertex(new glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 1.0f), zero3);
+  Vertex* v5 = new Vertex(new glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 0.0f), zero3);
+  Vertex* v6 = new Vertex(new glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 0.0f), zero3);
+  Vertex* v7 = new Vertex(new glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 1.0f), zero3);
 
   Mesh m1;
   m1.AddTri(v4, v5, v7);
@@ -62,19 +73,25 @@ int main()
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
   
-  while (!window->ShouldClose())
-  {
+  while (!window->ShouldClose()) {
+    compute.Bind();
+    compute.SetFloat("time", (float)glfwGetTime());
+    glDispatchCompute(512,512,1);
+
+    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+
     processInput(window);
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     shader.Bind();
-    shader.SetFloat("time", glfwGetTime());
+    glActiveTexture(GL_TEXTURE0);
+    tex.Bind();
     shader.SetMat4("projection", projection);
     shader.SetMat4("view", view);
-    //auto m = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
-    shader.SetMat4("model", model);
+    auto m = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+    shader.SetMat4("model", m);
     
     m1.Draw();
     
