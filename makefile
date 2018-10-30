@@ -6,7 +6,7 @@ TARGETDIR := bin
 TARGET := $(TARGETDIR)/runner
 TESTTARGET := bin/test
 
-CFLAGS := -g -Wall -std=c++0x -Wmultichar
+CFLAGS := -g -Wall -std=c++14 -Wmultichar
 LIB := -pthread -lglfw -ldl
 INC := -I include
  
