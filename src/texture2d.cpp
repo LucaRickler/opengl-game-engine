@@ -1,0 +1,38 @@
+#include <texture2d.hpp>
+#include <exception.hpp>
+#include <stb_image.hpp>
+#include <sstream>
+
+Texture2D::Texture2D(int width, int height) : Texture(width, height) {
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+}
+
+Texture2D::Texture2D(std::string filepath) : Texture() {
+  this->_filepath = filepath;
+  this->Bind();
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  int nrChannels;
+  unsigned char *data = stbi_load(filepath.c_str(), &this->_width, &this->_height, &nrChannels, 0);
+  if (data) {
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->_width, this->_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    stbi_image_free(data);
+  } else {
+    stbi_image_free(data);
+    std::stringstream message;
+    message << "Failed to load texture: " << filepath;
+    throw Exception(message.str());
+  }
+}
+
+Texture2D::~Texture2D() {}
+
+void Texture2D::Bind() {
+  glBindTexture(GL_TEXTURE_2D, this->_id);
+}

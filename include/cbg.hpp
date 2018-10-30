@@ -6,5 +6,7 @@
 #include <shader.hpp>
 #include <vertex.hpp>
 #include <mesh.hpp>
+#include <texture.hpp>
+#include <texture2d.hpp>
 
 #endif

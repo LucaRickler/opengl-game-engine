@@ -9,6 +9,8 @@
 class Exception;
 class Window;
 class Shader;
+class Texture;
+class Texture2D;
 class Vertex;
 class Mesh;
 
