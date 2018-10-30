@@ -69,7 +69,7 @@ int main()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    shader.Use();
+    shader.Bind();
     shader.SetFloat("time", glfwGetTime());
     shader.SetMat4("projection", projection);
     shader.SetMat4("view", view);

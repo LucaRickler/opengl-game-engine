@@ -41,7 +41,7 @@ void Shader::Load(const char* vertexPath, const char* fragmentPath) {
 }
 
 
-void Shader::Use() {
+void Shader::Bind() {
   glUseProgram(this->_id);
 }
 
