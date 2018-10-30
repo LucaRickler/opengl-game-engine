@@ -30,6 +30,7 @@ void Window::Open() {
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
     throw Exception("Failed to initialize GLAD");
   }
+  glfwSwapInterval(0);
 }
 
 void Window::Close() {
