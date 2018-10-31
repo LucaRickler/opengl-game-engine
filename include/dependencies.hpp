@@ -8,13 +8,14 @@
 
 class Exception;
 class Window;
+class Texture;
+class Texture2D;
 class Shader;
 class DrawShader;
 class Material;
 class ComputeShader;
-class Texture;
-class Texture2D;
 class Vertex;
 class Mesh;
+class Model;
 
 #endif

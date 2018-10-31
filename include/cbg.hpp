@@ -6,10 +6,11 @@
 #include <shader.hpp>
 #include <draw-shader.hpp>
 #include <compute-shader.hpp>
+#include <texture.hpp>
+#include <texture2d.hpp>
 #include <material.hpp>
 #include <vertex.hpp>
 #include <mesh.hpp>
-#include <texture.hpp>
-#include <texture2d.hpp>
+#include <model.hpp>
 
 #endif
