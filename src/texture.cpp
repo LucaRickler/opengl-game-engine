@@ -13,10 +13,10 @@ Texture::~Texture() {
   // glDeleteTextures(1, &this->_id);
 }
 
-int Texture::GetHeight() {
+int Texture::GetHeight() const {
   return this->_height;
 }
 
-int Texture::GetWidth() {
+int Texture::GetWidth() const {
   return this->_width;
 }

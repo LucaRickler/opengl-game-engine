@@ -9,8 +9,8 @@ public:
   Texture(int width, int height);
   virtual ~Texture();
 
-  int GetWidth();
-  int GetHeight();
+  int GetWidth() const;
+  int GetHeight() const;
 
   virtual void Bind() = 0;
 
