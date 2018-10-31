@@ -10,6 +10,7 @@ class Exception;
 class Window;
 class Shader;
 class DrawShader;
+class Material;
 class ComputeShader;
 class Texture;
 class Texture2D;
