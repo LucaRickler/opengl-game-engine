@@ -7,7 +7,8 @@ Window::Window(unsigned int width, unsigned int height) {
 }
 
 Window::~Window() {
-  glfwDestroyWindow(this->_window);
+  //glfwDestroyWindow(this->_window);
+  //glfwTerminate();
 }
 
 void Window::Open() {

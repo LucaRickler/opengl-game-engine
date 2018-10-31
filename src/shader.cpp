@@ -10,7 +10,7 @@
 Shader::Shader() {}
 
 Shader::~Shader() {
-  glDeleteProgram(this->_id);
+  //glDeleteProgram(this->_id);
 }
 
 void Shader::Bind() {
