@@ -1,6 +1,5 @@
 #include <cbg.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include <iostream>
 
@@ -72,12 +71,10 @@ int main()
   view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
   		   glm::vec3(0.0f, 0.0f, 0.0f), 
   		   glm::vec3(0.0f, 1.0f, 0.0f));
-  //view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
   glm::mat4 projection;
   projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
   glm::mat4 model(1);
-  //model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-
+  
   
 
     // uncomment this call to draw in wireframe polygons.
@@ -87,8 +84,7 @@ int main()
   auto matrix = mod.GetMatrix();
   
   while (!window->ShouldClose()) {
-    compute.Bind();
-    //compMat->Bind();
+    compMat->Bind();
     compute.SetFloat("time", (float)glfwGetTime());
     glDispatchCompute(512,512,1);
 
@@ -99,20 +95,11 @@ int main()
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // shader.Bind();
-    // glActiveTexture(GL_TEXTURE0);
-    // tex.Bind();
-    // shader.SetMat4("projection", projection);
-    // shader.SetMat4("view", view);
-
     auto m2 = glm::rotate(matrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
     auto transform = projection * view;
     mod.SetMatrix(m2);
     mod.Draw(transform);
-    //auto m = transform * m2;
-    //shader.SetMat4("transform", m);
     
-    //m1.Draw();
     
     window->SwapBuffers();
     glfwPollEvents();
