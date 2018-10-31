@@ -87,7 +87,6 @@ int main()
   while (!window->ShouldClose()) {
     compMat->Bind();
     compute.SetFloat("time", (float)glfwGetTime());
-    //glDispatchCompute(512,512,1);
     compMat->Dispatch();
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
