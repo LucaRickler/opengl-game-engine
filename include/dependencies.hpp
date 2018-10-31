@@ -14,6 +14,7 @@ class Shader;
 class DrawShader;
 class Material;
 class ComputeShader;
+class ComputeMaterial;
 class Vertex;
 class Mesh;
 class Model;

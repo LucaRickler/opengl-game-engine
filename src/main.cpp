@@ -37,9 +37,10 @@ int main()
 
   Texture2D *tex = new Texture2D(512,512);
 
-  Material* compMat = new Material();
+  ComputeMaterial* compMat = new ComputeMaterial();
   compMat->SetTexture(GL_TEXTURE0, tex);
   compMat->SetShader(&compute);
+  compMat->SetWorkGroups(512,512,1);
 
   Material* drawMat = new Material();
   drawMat->SetTexture(GL_TEXTURE0, tex);
@@ -86,7 +87,8 @@ int main()
   while (!window->ShouldClose()) {
     compMat->Bind();
     compute.SetFloat("time", (float)glfwGetTime());
-    glDispatchCompute(512,512,1);
+    //glDispatchCompute(512,512,1);
+    compMat->Dispatch();
 
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 

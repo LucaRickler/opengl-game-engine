@@ -9,6 +9,7 @@
 #include <texture.hpp>
 #include <texture2d.hpp>
 #include <material.hpp>
+#include <compute-material.hpp>
 #include <vertex.hpp>
 #include <mesh.hpp>
 #include <model.hpp>
