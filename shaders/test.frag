@@ -1,7 +1,9 @@
-#version 330 core
+#version 430 core
 out vec4 FragColor;
   
-in vec4 vertexColor; // the input variable from the vertex shader (same name and same type)  
+in vec4 vertexColor; 
+in vec2 texCoords;
+in vec3 normals;
 
 void main()
 {
