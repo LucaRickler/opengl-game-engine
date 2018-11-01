@@ -25,7 +25,7 @@ int main()
 
   DrawShader shader;
   try {
-    shader.Load("./shaders/test.vert","./shaders/test.2.frag");
+    shader.Load("./shaders/test.vert","./shaders/test.frag");
   } catch(Exception& e) {
     std::cout << e.what() << std::endl;
     return -1;

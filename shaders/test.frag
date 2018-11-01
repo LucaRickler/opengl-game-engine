@@ -1,11 +1,15 @@
 #version 430 core
 out vec4 FragColor;
   
-in vec4 vertexColor; 
-in vec2 texCoords;
-in vec3 normals;
+in VData{
+  vec4 vertexColor;
+  vec2 texCoords;
+  vec3 normals;
+} vdata; 
+
+uniform sampler2D tex;
 
 void main()
 {
-    FragColor = vertexColor;
-} 
+	FragColor=texture(tex, vdata.texCoords);
+}
