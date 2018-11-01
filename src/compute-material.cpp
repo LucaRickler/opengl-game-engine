@@ -8,7 +8,7 @@ void ComputeMaterial::Dispatch(bool async) {
   //this->Bind();
   glDispatchCompute(_groupsX, _groupsY, _groupsZ);
 
-  if (async)
+  if (!async)
     glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
 }
 

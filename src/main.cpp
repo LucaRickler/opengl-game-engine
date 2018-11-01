@@ -89,8 +89,6 @@ int main()
     compute.SetFloat("time", (float)glfwGetTime());
     compMat->Dispatch();
 
-    glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
-
     processInput(window);
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
