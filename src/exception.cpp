@@ -6,6 +6,6 @@ Exception::Exception(std::string message) : _message(message.c_str()) {}
 
 Exception::~Exception() {}
 
-std::string Exception::what() const throw() {
+std::string Exception::what() const {
   return this->_message;
 }

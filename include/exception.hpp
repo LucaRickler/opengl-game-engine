@@ -9,7 +9,7 @@ public:
   Exception(std::string message);
   virtual ~Exception();
 
-  virtual std::string what() const throw();
+  virtual std::string what() const;
 private:
   std::string _message;
 };
