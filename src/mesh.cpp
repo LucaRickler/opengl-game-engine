@@ -62,15 +62,19 @@ void Mesh::GenerateBuffers() {
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * _indices.size(), _indices.data(), GL_STATIC_DRAW);
 
+  // Positions
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
+  // Colors
   glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3* sizeof(float)));
   glEnableVertexAttribArray(1);
 
+  // UV
   glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6* sizeof(float)));
   glEnableVertexAttribArray(2);
 
+  // Normals
   glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(8* sizeof(float)));
   glEnableVertexAttribArray(3);
 
