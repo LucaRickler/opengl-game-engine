@@ -9,10 +9,10 @@ Model::Model() {
 
 Model::~Model() {}
 
-void Model::Draw(glm::mat4& transform) {
+void Model::Draw() {
   this->_material->Bind();
-  auto m = transform * this->_matrix;
-  this->_material->GetShader()->SetMat4("transform", m);
+  //auto m = transform * this->_matrix;
+  this->_material->GetShader()->SetMat4("model", this->_matrix);
   this->_mesh->Draw();
 }
 

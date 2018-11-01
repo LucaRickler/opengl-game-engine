@@ -8,11 +8,17 @@ out vec4 vertexColor;
 out vec2 texCoords;
 out vec3 normals;
 
-uniform mat4 transform;
+layout (std140) uniform Matrices
+{
+    mat4 view;
+    mat4 projection;
+};
+
+uniform mat4 model;
 
 void main()
 {
-	gl_Position = transform * vec4(aPos, 1.0);
+	gl_Position = projection * view * model * vec4(aPos, 1.0);
     vertexColor = vec4(color, 1.0);
     texCoords = uv;
     normals = aNorm;

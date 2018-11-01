@@ -8,7 +8,7 @@ public:
   Model();
   virtual ~Model();
 
-  void Draw(glm::mat4& transform);
+  void Draw();
 
   void SetMaterial(Material* mat);
   void SetMesh(Mesh* mesh);
