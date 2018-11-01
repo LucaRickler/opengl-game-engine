@@ -3,6 +3,8 @@
 
 #include <exception.hpp>
 #include <window.hpp>
+#include <buffer.hpp>
+#include <uniform-buffer.hpp>
 #include <shader.hpp>
 #include <draw-shader.hpp>
 #include <compute-shader.hpp>
