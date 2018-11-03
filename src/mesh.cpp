@@ -30,7 +30,7 @@ void Mesh::AddTri(Vertex* v1, Vertex* v2, Vertex* v3) {
   id = this->AddVertex(v3);
   this->_indices.push_back(id);
 
-  //this->RemoveBuffers();
+  this->RemoveBuffers();
   this->GenerateBuffers();
 }
 
