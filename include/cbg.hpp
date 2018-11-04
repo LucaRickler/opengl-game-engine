@@ -15,5 +15,6 @@
 #include <vertex.hpp>
 #include <mesh.hpp>
 #include <model.hpp>
+#include <camera.hpp>
 
 #endif

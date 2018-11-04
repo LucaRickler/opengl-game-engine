@@ -13,5 +13,11 @@ class ComputeMaterial;
 class Vertex;
 class Mesh;
 class Model;
+class Camera;
+
+struct TransfMatrices {
+  glm::mat4 view;
+  glm::mat4 projection;
+};
 
 #endif

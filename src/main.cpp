@@ -73,17 +73,19 @@ int main()
   // glm::vec3 cameraPos(0.0f, 0.0f, 3.0f);
   // glm::vec3 up(0.0f, 1.0f, 0.0f);
 
-  transfMats *trasnfs = new transfMats();
+  // transfMats *trasnfs = new transfMats();
 
-  trasnfs->view = glm::mat4(1);
-  trasnfs->view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
-  		   glm::vec3(0.0f, 0.0f, 0.0f), 
-  		   glm::vec3(0.0f, 1.0f, 0.0f));
-  trasnfs->projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-  glm::mat4 model(1);
+  // trasnfs->view = glm::mat4(1);
+  // trasnfs->view = glm::lookAt(glm::vec3(0.0f, 0.0f, 3.0f), 
+  // 		   glm::vec3(0.0f, 0.0f, 0.0f), 
+  // 		   glm::vec3(0.0f, 1.0f, 0.0f));
+  // trasnfs->projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+  // glm::mat4 model(1);
   
-  UniformBuffer<transfMats> ubo(trasnfs, 0);
-  ubo.SetSubData<glm::mat4>(&trasnfs->projection, sizeof(glm::mat4));
+  // UniformBuffer<transfMats> ubo(trasnfs, 0);
+  // ubo.SetSubData<glm::mat4>(&trasnfs->projection, sizeof(glm::mat4));
+
+  Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
