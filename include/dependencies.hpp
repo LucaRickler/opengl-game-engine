@@ -6,17 +6,6 @@
 
 #include <glm/glm.hpp>
 
-class Exception;
-class Window;
-class Texture;
-class Texture2D;
-class Shader;
-class DrawShader;
-class Material;
-class ComputeShader;
-class ComputeMaterial;
-class Vertex;
-class Mesh;
-class Model;
+#include <definitions.hpp>
 
 #endif
