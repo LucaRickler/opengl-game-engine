@@ -6,19 +6,19 @@ Buffer<T>::~Buffer() {}
 
 template <class T>
 void Buffer<T>::Bind() {
-  glBindBuffer(this->_type, this->_id);
+  glBindBuffer(this->GetGLType(), this->GetGLId());
 }
 
 template <class T>
 void Buffer<T>::UnBind() {
-  glBindBuffer(this->_type, 0);
+  glBindBuffer(this->GetGLType(), 0);
 }
 
 template <class T>
 template <class K>
 void Buffer<T>::SetSubData(K* data, unsigned long offset) {
   this->Bind();
-  glBufferSubData(this->_type, offset, sizeof(*data), data);
+  glBufferSubData(this->GetGLType(), offset, sizeof(*data), data);
 }
 
 template <class T>

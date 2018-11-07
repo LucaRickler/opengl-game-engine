@@ -2,9 +2,10 @@
 #define BUFFER_HPP
 
 #include <dependencies.hpp>
+#include <gl-object.hpp>
 
 template <class T>
-class Buffer {
+class Buffer : public GLObject{
 public:
   Buffer(T* data);
   virtual ~Buffer();
@@ -16,8 +17,6 @@ public:
 
   T* GetData();
 protected:
-  unsigned int _id;
-  unsigned int _type;
   T* _data;
 };
 
