@@ -14,9 +14,9 @@ void ComputeShader::Load(std::string filepath) {
   glCompileShader(compute);
   this->CheckCompileErrors(compute, "Compute");
   
-  this->_id = glCreateProgram();
-  glAttachShader(this->_id, compute);
-  glLinkProgram(this->_id);
-  this->CheckLinkErrors(this->_id);
+  *(RefGLId()) = glCreateProgram();
+  glAttachShader(this->GetGLId(), compute);
+  glLinkProgram(this->GetGLId());
+  this->CheckLinkErrors(this->GetGLId());
   glDeleteShader(compute);
 }

@@ -2,10 +2,10 @@
 #define SHADER_H
 
 #include  <dependencies.hpp>
-
+#include <gl-object.hpp>
 #include <string>
 
-class Shader {
+class Shader : public GLObject {
 public:
   Shader();
   virtual ~Shader();
@@ -20,7 +20,6 @@ public:
   void SetMat4(const std::string &name, glm::mat4 &value) const;
   void BindUniformBlock(const std::string &name, int point);
 protected:
-  unsigned int _id;
   void CheckCompileErrors(unsigned int shader, std::string type);
   void CheckLinkErrors(unsigned int program);
   std::string* LoadShaderCode(const char* path);

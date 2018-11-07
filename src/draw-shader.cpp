@@ -21,11 +21,11 @@ void DrawShader::Load(const char* vertexPath, const char* fragmentPath) {
   glCompileShader(fragment);
   this->CheckCompileErrors(fragment, "Fragment");
   // shader Program
-  this->_id = glCreateProgram();
-  glAttachShader(this->_id, vertex);
-  glAttachShader(this->_id, fragment);
-  glLinkProgram(this->_id);
-  this->CheckLinkErrors(this->_id);
+  *(RefGLId()) = glCreateProgram();
+  glAttachShader(this->GetGLId(), vertex);
+  glAttachShader(this->GetGLId(), fragment);
+  glLinkProgram(this->GetGLId());
+  this->CheckLinkErrors(this->GetGLId());
   // delete the shaders as they're linked into our program now and no longer necessary
   glDeleteShader(vertex);
   glDeleteShader(fragment);
