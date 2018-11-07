@@ -1,7 +1,7 @@
 #include <texture.hpp>
 
 Texture::Texture() {
-  glGenTextures(1, &this->_id);
+  glGenTextures(1, RefGLId());
 }
 
 Texture::Texture(int width, int height) : Texture() {

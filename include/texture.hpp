@@ -2,8 +2,9 @@
 #define TEXTURE_HPP
 
 #include <dependencies.hpp>
+#include <gl-object.hpp>
 
-class Texture {
+class Texture : public GLObject {
 public:
   Texture();
   Texture(int width, int height);
@@ -15,7 +16,6 @@ public:
   virtual void Bind() = 0;
 
 protected:
-  unsigned int _id;
   int _width;
   int _height;
 };
