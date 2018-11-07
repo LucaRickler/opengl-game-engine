@@ -11,7 +11,7 @@ class DrawShader;
 class Material;
 class ComputeShader;
 class ComputeMaterial;
-class Vertex;
+struct Vertex;
 class Mesh;
 class Model;
 class Camera;
