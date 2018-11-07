@@ -2,6 +2,7 @@
 #define DEFINITONS_HPP
 
 class Exception;
+class GLObject;
 class Window;
 class Texture;
 class Texture2D;

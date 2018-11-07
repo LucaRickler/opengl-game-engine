@@ -2,6 +2,7 @@
 #define CBG_HPP
 
 #include <exception.hpp>
+#include <gl-object.hpp>
 #include <window.hpp>
 #include <buffer.hpp>
 #include <uniform-buffer.hpp>
