@@ -2,7 +2,6 @@
 out vec4 FragColor;
   
 in VData{
-  vec4 vertexColor;
   vec2 texCoords;
   vec3 normals;
 } vdata; 

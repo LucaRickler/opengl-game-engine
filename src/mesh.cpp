@@ -42,7 +42,7 @@ int Mesh::AddVertex(Vertex* vertex) {
   this->_v_pointers.push_back(vertex);
   float* array = vertex->GetArray();
   
-  for(int i = 0; i < 11; i++) {
+  for(int i = 0; i < 8; i++) {
     this->_vertices.push_back(array[i]);
   }
   delete[] array;
@@ -63,20 +63,16 @@ void Mesh::GenerateBuffers() {
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * _indices.size(), _indices.data(), GL_STATIC_DRAW);
 
   // Positions
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
   glEnableVertexAttribArray(0);
 
-  // Colors
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3* sizeof(float)));
+  // Normals
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3* sizeof(float)));
   glEnableVertexAttribArray(1);
 
   // UV
-  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6* sizeof(float)));
+  glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6* sizeof(float)));
   glEnableVertexAttribArray(2);
-
-  // Normals
-  glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(8* sizeof(float)));
-  glEnableVertexAttribArray(3);
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);

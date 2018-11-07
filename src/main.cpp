@@ -45,15 +45,15 @@ int main() {
   drawMat->SetTexture(GL_TEXTURE0, tex);
   drawMat->SetShader(&shader);
 
-  Vertex* v0 = new Vertex(new glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 0.0f), zero3);
-  Vertex* v1 = new Vertex(new glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 0.0f), zero3);
-  Vertex* v2 = new Vertex(new glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 1.0f), zero3);
-  Vertex* v3 = new Vertex(new glm::vec4(1.0f,  1.0f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 1.0f), zero3);
+  Vertex* v0 = new Vertex(new glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), new glm::vec2(1.0f, 0.0f), zero3);
+  Vertex* v1 = new Vertex(new glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), new glm::vec2(0.0f, 0.0f), zero3);
+  Vertex* v2 = new Vertex(new glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f), new glm::vec2(0.0f, 1.0f), zero3);
+  Vertex* v3 = new Vertex(new glm::vec4(1.0f,  1.0f, 0.0f, 1.0f), new glm::vec2(1.0f, 1.0f), zero3);
   
-  Vertex* v4 = new Vertex(new glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 1.0f), zero3);
-  Vertex* v5 = new Vertex(new glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(1.0f, 0.0f), zero3);
-  Vertex* v6 = new Vertex(new glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 0.0f), zero3);
-  Vertex* v7 = new Vertex(new glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), zero3, new glm::vec2(0.0f, 1.0f), zero3);
+  Vertex* v4 = new Vertex(new glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), new glm::vec2(1.0f, 1.0f), zero3);
+  Vertex* v5 = new Vertex(new glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), new glm::vec2(1.0f, 0.0f), zero3);
+  Vertex* v6 = new Vertex(new glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), new glm::vec2(0.0f, 0.0f), zero3);
+  Vertex* v7 = new Vertex(new glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), new glm::vec2(0.0f, 1.0f), zero3);
 
   Mesh *m1 = new Mesh();
   m1->AddTri(v4, v5, v7);

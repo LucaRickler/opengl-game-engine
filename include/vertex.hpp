@@ -7,15 +7,13 @@ class Vertex {
 public:
   Vertex();
   Vertex(glm::vec4* point);
-  Vertex(glm::vec4* point, glm::vec3* color);
-  Vertex(glm::vec4* point, glm::vec3* color, glm::vec2* uv);
-  Vertex(glm::vec4* point, glm::vec3* color, glm::vec2* uv, glm::vec3* normal);
+  Vertex(glm::vec4* point, glm::vec2* uv);
+  Vertex(glm::vec4* point, glm::vec2* uv, glm::vec3* normal);
   virtual ~Vertex();
 
   float* GetArray();
 private:
   glm::vec4* _point;
-  glm::vec3* _color;
   glm::vec2* _uv;
   glm::vec3* _normal;
 };
