@@ -3,6 +3,10 @@
 
 typedef unsigned long EntityId;
 
+namespace Memory {
+  class Allocator;
+}
+
 class SystemManager;
 class System;
 class EntityManager;
