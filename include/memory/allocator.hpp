@@ -69,9 +69,9 @@ protected:
   size_t GetUsedMemory() const;
   size_t GetNumberAllocations() const;
 
-  // void* alignForward(void* address, u_int8_t alignment);
-  // u_int8_t alignForwardAdjustment(const void* address, u_int8_t alignment);
-
+  void* alignForward(void* address, u_int8_t alignment);
+  u_int8_t alignForwardAdjustment(const void* address, u_int8_t alignment);
+  u_int8_t alignForwardAdjustmentWithHeader(const void* address, u_int8_t alignment, u_int8_t headerSize);
 };
 }
 
