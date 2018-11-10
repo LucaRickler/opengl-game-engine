@@ -15,4 +15,6 @@
 #include <component.hpp>
 #include <component-manager.hpp>
 
+#include <moonbeam-engine.hpp>
+
 #endif

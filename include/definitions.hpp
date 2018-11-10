@@ -17,5 +17,6 @@ class System;
 class EntityManager;
 class ComponentManager;
 
+class MoonBeamEngine;
 
 #endif
