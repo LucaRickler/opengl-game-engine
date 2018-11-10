@@ -4,8 +4,6 @@
 #include <dependencies.hpp>
 #include <memory/allocator.hpp>
 
-//#define _DEBUG 1
-
 namespace Memory {
 class StackAllocator : public Allocator {
 public:
@@ -17,22 +15,16 @@ private:
   StackAllocator& operator=(const StackAllocator&);
 
   struct AllocationHeader {
-    #if _DEBUG 
-      void* prev_address; 
-    #endif 
-      
+    void* prev_address; 
     u_int8_t adjustment;
   };
   
-  #if _DEBUG 
-    void* _prev_position; 
-  #endif 
-  
-  
+  void* _prev_position;  
   void* _position;
   
   void* AllocateMemory(size_t size, u_int8_t alignment = 4) override;
   void DeallocateMemory(void* pointer) override;
+  void DeallocateMemory();
 };
 }
 

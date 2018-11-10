@@ -43,11 +43,11 @@ public:
   }
 
   template <class T>
-  T* DeallocateArray(T* array) {
+  void DeallocateArray(T* array) {
     assert(array != nullptr); 
     size_t length = *( ((size_t*)array) - 1 ); 
     
-    for (size_t i = 0; i < length; i++) array.~T(); 
+    for (size_t i = 0; i < length; i++) array[i].~T(); 
     
     //Calculate how much extra memory was allocated to store the length before the array 
     uint8_t headerSize = sizeof(size_t)/sizeof(T); 
