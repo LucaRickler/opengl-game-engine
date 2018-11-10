@@ -7,6 +7,7 @@ namespace Memory {
   class Allocator;
   class LinearAllocator;
   class StackAllocator;
+  class BlockListAllocator;
 }
 
 class SystemManager;

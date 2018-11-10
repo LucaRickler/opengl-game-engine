@@ -4,7 +4,7 @@
 int main() {
   void* memory = malloc(1024*sizeof(char));
 
-  Memory::StackAllocator lalloc(memory, 1024*sizeof(char));
+  Memory::BlockListAllocator lalloc(memory, 1024*sizeof(char));
 
   printf("memory: %p\n", memory);
 
@@ -32,7 +32,7 @@ int main() {
   lalloc.Dealocate(k);
 
 
-  lalloc.Clear();
+  //lalloc.Clear();
   free(memory);
 
   return 0;
