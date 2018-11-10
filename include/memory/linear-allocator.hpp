@@ -16,7 +16,7 @@ private:
 
   void* _position;
   
-  void* AllocateMemory(size_t size, u_int8_t allignment = 4) override;
+  void* AllocateMemory(size_t size, u_int8_t alignment = 4) override;
   void DeallocateMemory(void* pointer) override;
 };
 }
