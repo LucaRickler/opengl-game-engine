@@ -4,7 +4,7 @@
 int main() {
   void* memory = malloc(1024*sizeof(char));
 
-  Memory::BlockListAllocator lalloc(memory, 1024*sizeof(char));
+  Memory::PoolAllocator<int> lalloc(memory, 1024*sizeof(char));
 
   printf("memory: %p\n", memory);
 
@@ -25,10 +25,10 @@ int main() {
   printf("j: %d\n", *j);
   printf("k: %d\n", *k);
 
-  int* array = lalloc.AllocateArray<int>(10);
-  printf("&array: %p\n", array);
+  // int* array = lalloc.AllocateArray<int>(10);
+  // printf("&array: %p\n", array);
 
-  lalloc.DeallocateArray(array);
+  // lalloc.DeallocateArray(array);
   lalloc.Dealocate(k);
 
 

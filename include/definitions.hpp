@@ -8,6 +8,7 @@ namespace Memory {
   class LinearAllocator;
   class StackAllocator;
   class BlockListAllocator;
+  template <class T> class PoolAllocator;
 }
 
 class SystemManager;
