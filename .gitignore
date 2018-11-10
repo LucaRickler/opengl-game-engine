@@ -37,3 +37,4 @@ moonbeam
 bin
 build
 .vscode
+\.release_time

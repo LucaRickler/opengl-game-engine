@@ -6,7 +6,13 @@
 template<class T>
 class Entity {
 public:
+  Entity();
+  virtual ~Entity();
+
+  EntityId GetEntityId() const;
+
 protected:
+
 private:
   EntityId _id;
 

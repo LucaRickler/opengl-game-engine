@@ -7,6 +7,9 @@ class EntityManager {
 public:
   EntityManager();
   ~EntityManager();
+
+  template <class T>
+  T* CreateEntity();
 };
 
 #endif

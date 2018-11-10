@@ -7,6 +7,9 @@ class ComponentManager {
 public:
   ComponentManager();
   ~ComponentManager();
+
+  template <class T>
+  T* CreateComponent();
 };
 
 #endif

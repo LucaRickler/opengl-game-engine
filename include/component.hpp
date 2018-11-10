@@ -6,6 +6,8 @@
 template<class T>
 class Component {
 public:
+  Component();
+  virtual ~Component();
 protected:
 private:
 };
