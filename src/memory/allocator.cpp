@@ -30,11 +30,15 @@ size_t Allocator::GetNumberAllocations() const {
   return this->_number_allocated;
 }
 
-void* Allocator::alignForward(void* address, u_int8_t alignment) {
+bool Allocator::IsAligned(void* address, u_int8_t alignment) {
+  return this->AlignForward(address, alignment) == 0;
+}
+
+void* Allocator::AlignForward(void* address, u_int8_t alignment) {
   return (void*)( ( reinterpret_cast<uintptr_t>(address) + static_cast<u_int8_t>(alignment-1) ) & static_cast<u_int8_t>(~(alignment-1)) );
 } 
 
-u_int8_t Allocator::alignForwardAdjustment(const void* address, u_int8_t alignment) { 
+u_int8_t Allocator::AlignForwardAdjustment(const void* address, u_int8_t alignment) { 
   u_int8_t adjustment = alignment - (reinterpret_cast<uintptr_t>(address) & static_cast<uintptr_t>(alignment-1)); 
   
   if(adjustment == alignment) return 0; 
@@ -43,9 +47,9 @@ u_int8_t Allocator::alignForwardAdjustment(const void* address, u_int8_t alignme
   return adjustment; 
 } 
 
-u_int8_t Allocator::alignForwardAdjustmentWithHeader(const void* address, u_int8_t alignment, u_int8_t headerSize) 
+u_int8_t Allocator::AlignForwardAdjustmentWithHeader(const void* address, u_int8_t alignment, u_int8_t headerSize) 
 {
-  u_int8_t adjustment = this->alignForwardAdjustment(address, alignment); 
+  u_int8_t adjustment = this->AlignForwardAdjustment(address, alignment); 
   u_int8_t neededSpace = headerSize; 
   
   if(adjustment < neededSpace) 
@@ -59,5 +63,10 @@ u_int8_t Allocator::alignForwardAdjustmentWithHeader(const void* address, u_int8
   }
   
   return adjustment; 
-} 
+}
+
+void* Allocator::Add(void* pointer, size_t x) {
+  return (void*)(reinterpret_cast<uintptr_t>(pointer)+x);
+}
+
 }

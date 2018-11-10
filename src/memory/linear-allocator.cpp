@@ -13,7 +13,7 @@ LinearAllocator::~LinearAllocator() {
 
 void* LinearAllocator::AllocateMemory(size_t size, u_int8_t alignment) {
   assert(size != 0);
-  u_int8_t adjustment = this->alignForwardAdjustment(_position, alignment); 
+  u_int8_t adjustment = this->AlignForwardAdjustment(_position, alignment); 
   
   if(this->_used + adjustment + size > _size) return nullptr; 
   
