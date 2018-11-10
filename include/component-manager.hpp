@@ -9,7 +9,13 @@ public:
   ~ComponentManager();
 
   template <class T>
-  T* CreateComponent();
+  T* AddComponent();
+
+  template <class T>
+  T* GetComponent();
+
+  ComponentManager(const ComponentManager&) = delete;
+	ComponentManager& operator=(ComponentManager&) = delete;
 };
 
 #endif
