@@ -19,8 +19,6 @@ public:
   bool operator==(const Entity& other) const;
   bool operator!=(const Entity& other) const;
 
-  EntityTypeId GetTypeId() const;
-
 protected:
 
 private:

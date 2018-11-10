@@ -34,7 +34,3 @@ bool Entity::operator!=(const Entity& other) const {
 void Entity::OnEnable() {}
 
 void Entity::OnDisable() {}
-
-EntityTypeId Entity::GetTypeId() const {
-  return (EntityTypeId)(typeid(*this).hash_code());
-}

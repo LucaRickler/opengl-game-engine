@@ -20,7 +20,7 @@ public:
 
 private:
   Allocator* _memory;
-  std::unordered_map<EntityTypeId, Allocator*> _type_allocators;
+  std::unordered_map<TypeId, Allocator*> _type_allocators;
   std::unordered_map<EntityId, Entity*> _entities;
 
   EntityId GetNewId();

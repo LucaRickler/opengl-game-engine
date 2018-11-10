@@ -14,8 +14,8 @@ void EntityTest() {
   A a;
   B b;
 
-  printf("Type A: %d\n", a.GetTypeId());
-  printf("Type B: %d\n", b.GetTypeId());
+  printf("Type A: %X\n", Utils::GetTypeId<A>());
+  printf("Type B: %X\n", Utils::GetTypeId<B>());
 }
 
 int main() {

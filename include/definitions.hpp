@@ -10,19 +10,19 @@ namespace Memory {
   class ProxyAllocator;
 }
 
+typedef size_t TypeId;
+
 class SystemManager;
 class System;
 class EntityManager;
 
 typedef unsigned long EntityId;
-typedef size_t EntityTypeId;
 
 class Entity;
 
 class ComponentManager;
 
 typedef unsigned long ComponentId;
-typedef size_t ComponentTypeId;
 
 class Component;
 
