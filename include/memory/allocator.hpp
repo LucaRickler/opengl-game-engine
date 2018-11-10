@@ -9,9 +9,9 @@ public:
   Allocator(void* start, size_t size);
   virtual ~Allocator();
 
-  template <class T>
-  T* Allocate() {
-    return new (this->AllocateMemory(sizeof(T), alignof(T))) T;
+  template <class T, typename ...Args>
+  T* Allocate(Args... args) {
+    return new (this->AllocateMemory(sizeof(T), alignof(T))) T(args...);
   }
 
   template <class T>
