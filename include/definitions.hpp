@@ -21,6 +21,11 @@ class Entity;
 
 class ComponentManager;
 
+typedef unsigned long ComponentId;
+typedef size_t ComponentTypeId;
+
+class Component;
+
 class MoonBeamEngine;
 
 #endif

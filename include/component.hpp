@@ -3,7 +3,6 @@
 
 #include <dependencies.hpp>
 
-template<class T>
 class Component {
 public:
   Component();
@@ -11,7 +10,5 @@ public:
 protected:
 private:
 };
-
-#include <component.tpp>
 
 #endif
