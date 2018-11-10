@@ -3,7 +3,6 @@
 
 #include <dependencies.hpp>
 
-template<class T>
 class Entity {
 public:
   Entity();
@@ -20,6 +19,8 @@ public:
   bool operator==(const Entity& other) const;
   bool operator!=(const Entity& other) const;
 
+  EntityTypeId GetTypeId() const;
+
 protected:
 
 private:
@@ -27,7 +28,5 @@ private:
   bool _active;
 
 };
-
-#include <entity.tpp>
 
 #endif

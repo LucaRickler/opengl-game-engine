@@ -1,8 +1,6 @@
 #ifndef DEFINITIONS_HPP
 #define DEFINITIONS_HPP
 
-typedef unsigned long EntityId;
-
 namespace Memory {
   class Allocator;
   class LinearAllocator;
@@ -15,6 +13,12 @@ namespace Memory {
 class SystemManager;
 class System;
 class EntityManager;
+
+typedef unsigned long EntityId;
+typedef size_t EntityTypeId;
+
+class Entity;
+
 class ComponentManager;
 
 class MoonBeamEngine;

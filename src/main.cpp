@@ -1,5 +1,22 @@
 #include <moonbeam.hpp>
 
+class A : public Entity {
+public:
+  A() {}
+};
+
+class B: public Entity {
+public:
+  B() {}
+};
+
+void EntityTest() {
+  A a;
+  B b;
+
+  printf("Type A: %d\n", a.GetTypeId());
+  printf("Type B: %d\n", b.GetTypeId());
+}
 
 int main() {
   void* memory = malloc(1024*sizeof(char));
@@ -34,6 +51,8 @@ int main() {
 
   //lalloc.Clear();
   free(memory);
+
+  EntityTest();
 
   return 0;
 }
