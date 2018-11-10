@@ -9,6 +9,7 @@ namespace Memory {
   class StackAllocator;
   class BlockListAllocator;
   template <class T> class PoolAllocator;
+  class ProxyAllocator;
 }
 
 class SystemManager;
