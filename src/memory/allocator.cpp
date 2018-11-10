@@ -51,6 +51,9 @@ u_int8_t Allocator::AlignForwardAdjustmentWithHeader(const void* address, u_int8
 {
   u_int8_t adjustment = this->AlignForwardAdjustment(address, alignment); 
   u_int8_t neededSpace = headerSize; 
+  // printf("address: %p\n", address);
+  // printf("headerSize: %d\n", headerSize);
+  // printf("pre-adjustment: %d\n", adjustment);
   
   if(adjustment < neededSpace) 
   {
@@ -61,7 +64,7 @@ u_int8_t Allocator::AlignForwardAdjustmentWithHeader(const void* address, u_int8
     
     if(neededSpace % alignment > 0) adjustment += alignment;
   }
-  
+  // printf("adjustment: %d\n", adjustment);
   return adjustment; 
 }
 

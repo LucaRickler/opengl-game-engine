@@ -5,6 +5,8 @@ typedef unsigned long EntityId;
 
 namespace Memory {
   class Allocator;
+  class LinearAllocator;
+  class StackAllocator;
 }
 
 class SystemManager;
