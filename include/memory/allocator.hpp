@@ -56,18 +56,19 @@ public:
     this->DeallocateMemory(array - headerSize); 
   }
 
+  virtual void* AllocateMemory(size_t size, u_int8_t allignment = 4) = 0;
+  virtual void DeallocateMemory(void* pointer) = 0;
+
+  void* GetStart() const;
+  size_t GetSize() const;
+  size_t GetUsedMemory() const;
+  size_t GetNumberAllocations() const;
+
 protected:
   void* _start;
   size_t _size;
   size_t _used;
   size_t _number_allocated;
-
-  virtual void* AllocateMemory(size_t size, u_int8_t allignment = 4) = 0;
-  virtual void DeallocateMemory(void* pointer) = 0;
-  void* GetStart() const;
-  size_t GetSize() const;
-  size_t GetUsedMemory() const;
-  size_t GetNumberAllocations() const;
 
   bool IsAligned(void* address, u_int8_t alignment);
   void* AlignForward(void* address, u_int8_t alignment);
