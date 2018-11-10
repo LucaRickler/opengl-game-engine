@@ -69,4 +69,8 @@ void* Allocator::Add(void* pointer, size_t x) {
   return (void*)(reinterpret_cast<uintptr_t>(pointer)+x);
 }
 
+void* Allocator::Subtract(void* pointer, size_t x) {
+  return (void*)(reinterpret_cast<uintptr_t>(pointer)-x);
+}
+
 }

@@ -74,7 +74,7 @@ protected:
   u_int8_t AlignForwardAdjustment(const void* address, u_int8_t alignment);
   u_int8_t AlignForwardAdjustmentWithHeader(const void* address, u_int8_t alignment, u_int8_t headerSize);
   void* Add(void* pointer, size_t x);
-
+  void* Subtract(void* pointer, size_t x);
 
 };
 }
