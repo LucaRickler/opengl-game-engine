@@ -19,6 +19,8 @@ public:
   bool operator==(const Entity& other) const;
   bool operator!=(const Entity& other) const;
 
+  friend class EntityManager;
+
 protected:
 
 private:
