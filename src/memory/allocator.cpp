@@ -30,13 +30,15 @@ size_t Allocator::GetNumberAllocations() const {
   return this->_number_allocated;
 }
 
+void Allocator::Clear() {}
+
 bool Allocator::IsAligned(void* address, u_int8_t alignment) {
   return this->AlignForward(address, alignment) == 0;
 }
 
 void* Allocator::AlignForward(void* address, u_int8_t alignment) {
   return (void*)( ( reinterpret_cast<uintptr_t>(address) + static_cast<u_int8_t>(alignment-1) ) & static_cast<u_int8_t>(~(alignment-1)) );
-} 
+}
 
 u_int8_t Allocator::AlignForwardAdjustment(const void* address, u_int8_t alignment) { 
   u_int8_t adjustment = alignment - (reinterpret_cast<uintptr_t>(address) & static_cast<uintptr_t>(alignment-1)); 

@@ -9,7 +9,7 @@ class LinearAllocator : public Allocator {
 public:
   LinearAllocator(void* start, size_t size);
   virtual ~LinearAllocator();
-  void Clear();
+  void Clear() override;
 private:
   LinearAllocator(const LinearAllocator&);
   LinearAllocator& operator=(const LinearAllocator&);

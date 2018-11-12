@@ -9,7 +9,7 @@ class StackAllocator : public Allocator {
 public:
   StackAllocator(void* start, size_t size);
   virtual ~StackAllocator();
-  void Clear();
+  void Clear() override;
 private:
   StackAllocator(const StackAllocator&);
   StackAllocator& operator=(const StackAllocator&);

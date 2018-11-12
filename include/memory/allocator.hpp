@@ -59,6 +59,8 @@ public:
   virtual void* AllocateMemory(size_t size, u_int8_t allignment = 4) = 0;
   virtual void DeallocateMemory(void* pointer) = 0;
 
+  virtual void Clear();
+
   void* GetStart() const;
   size_t GetSize() const;
   size_t GetUsedMemory() const;
