@@ -56,9 +56,17 @@ public:
     this->DeallocateMemory(array - headerSize); 
   }
 
+  template <class T>
+  T* AllocateAllocator(size_t length) {
+    assert(length != 0);
+    void* position = (void*)(reinterpret_cast<intptr_t>(this->GetCurrentPosition()) - static_cast<intptr_t>(length));
+    return new (this->AllocateMemory(sizeof(T) + length, alignof(T))) T(position, length);
+  }
+
   virtual void* AllocateMemory(size_t size, u_int8_t allignment = 4) = 0;
   virtual void DeallocateMemory(void* pointer) = 0;
 
+  virtual void* GetCurrentPosition() = 0;
   virtual void Clear();
 
   void* GetStart() const;

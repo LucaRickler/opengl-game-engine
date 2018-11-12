@@ -61,3 +61,8 @@ void* PoolAllocator<T>::NextFree() {
 
   return nullptr;
 }
+
+template <class T>
+void* PoolAllocator<T>::GetCurrentPosition() {
+  return nullptr;
+}

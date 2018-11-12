@@ -55,3 +55,7 @@ void StackAllocator::DeallocateMemory() {
   _prev_position = header->prev_address;
   _number_allocated--; 
 }
+
+void* StackAllocator::GetCurrentPosition() {
+  return this->_position;
+}

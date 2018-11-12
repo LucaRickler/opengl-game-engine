@@ -110,3 +110,7 @@ void BlockListAllocator::DeallocateMemory(void* p)
   _number_allocated--; 
   _used -= block_size; 
 }
+
+void* BlockListAllocator::GetCurrentPosition() {
+  return this->_free_blocks->next;
+}

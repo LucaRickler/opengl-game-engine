@@ -25,6 +25,8 @@ private:
   void* AllocateMemory(size_t size, u_int8_t alignment = 4) override;
   void DeallocateMemory(void* pointer) override;
   void DeallocateMemory();
+
+  void* GetCurrentPosition() override;
 };
 }
 

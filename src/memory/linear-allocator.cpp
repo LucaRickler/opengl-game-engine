@@ -34,3 +34,7 @@ void LinearAllocator::Clear() {
   this->_used = 0;
   this->_position = _start;
 } 
+
+void* LinearAllocator::GetCurrentPosition() {
+  return this->_position;
+}

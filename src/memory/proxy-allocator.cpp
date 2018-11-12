@@ -20,3 +20,7 @@ void ProxyAllocator::DeallocateMemory(void* pointer) {
   _allocator.DeallocateMemory(pointer);
   _used = _allocator.GetUsedMemory();
 }
+
+void* ProxyAllocator::GetCurrentPosition() {
+  return _allocator.GetCurrentPosition();
+}

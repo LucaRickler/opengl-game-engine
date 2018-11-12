@@ -28,6 +28,7 @@ private:
   void DeallocateMemory(void* pointer) override;
 
   void* NextFree();
+  void* GetCurrentPosition() override;
 };
 }
 
