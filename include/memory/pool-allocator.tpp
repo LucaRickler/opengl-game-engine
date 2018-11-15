@@ -26,21 +26,28 @@ PoolAllocator<T>::~PoolAllocator() {
 }
 
 template <class T>
+void PoolAllocator<T>::Clear() {
+  this->_used = 0;
+  this->_number_allocated = 0;
+}
+
+template <class T>
 void* PoolAllocator<T>::AllocateMemory(size_t size, u_int8_t alignment) {
-  assert(size == _block_size && alignment == _alignment); 
+  assert(size + 4 == _block_size); //&& alignment == _alignment); 
   if(_first_free == nullptr) 
     return nullptr;
   
   void* p = _first_free;
   ((Block*)_first_free)->occupied = true;
   _first_free = this->NextFree();
-  _used += size;
+  _used += _block_size;
   _number_allocated++; 
   return &((Block*)p)->data; 
 }
 
 template <class T>
 void PoolAllocator<T>::DeallocateMemory(void* p) {
+  p = this->Subtract(p, 4);
   _first_free = p;
   ((Block*)p)->occupied = false;
   _used -= this->_block_size; 

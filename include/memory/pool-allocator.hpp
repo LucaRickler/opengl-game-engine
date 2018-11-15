@@ -11,6 +11,7 @@ class PoolAllocator : public Allocator {
 public:
   PoolAllocator(void* start, size_t size);
   virtual ~PoolAllocator();
+  void Clear() override;
 private:
   PoolAllocator(const PoolAllocator&);
   PoolAllocator& operator=(const PoolAllocator&);
