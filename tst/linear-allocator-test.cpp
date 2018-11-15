@@ -54,4 +54,28 @@ TEST_CASE("LinearAllocator", "[Memory::LinearAllocator]") {
     REQUIRE(array != nullptr);
     REQUIRE(array[9] == 9);
   }
+
+  SECTION("Allocate Allocator") {
+    size_t size = 10 * sizeof(u_int8_t);
+    LinearAllocator* b = a.AllocateAllocator<LinearAllocator>(size);
+    REQUIRE(b != nullptr);
+    REQUIRE(a.GetUsedMemory() >= sizeof(LinearAllocator) + size);
+    
+    int *i = b->Allocate<int>();
+    REQUIRE(i != nullptr);
+    REQUIRE(b->GetUsedMemory() >= sizeof(int));
+
+    *i = 5;
+    REQUIRE(*i == 5);
+
+    b->Clear();
+    REQUIRE(b->GetUsedMemory() == 0);
+    REQUIRE(i != nullptr);
+    REQUIRE(*i == 5);
+
+    a.Clear();
+    REQUIRE(b != nullptr);
+    REQUIRE(a.GetUsedMemory() == 0);
+    REQUIRE(*i == 5);
+  }
 }

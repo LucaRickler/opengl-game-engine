@@ -17,7 +17,7 @@ TEST_CASE("StackAllocator", "[Memory::StackAllocator]") {
     int *j = a.Allocate<int>(*i);
     REQUIRE(j != nullptr);
     REQUIRE(*j == *i);
-    REQUIRE(reinterpret_cast<uintptr_t>(j) - reinterpret_cast<uintptr_t>(i) > sizeof(int));
+    REQUIRE(reinterpret_cast<uintptr_t>(j) - reinterpret_cast<uintptr_t>(i) >= sizeof(int));
 
     *i = 0;
     REQUIRE(*j != *i);
@@ -57,5 +57,29 @@ TEST_CASE("StackAllocator", "[Memory::StackAllocator]") {
     REQUIRE(a.GetUsedMemory() == 0);
     REQUIRE(array != nullptr);
     REQUIRE(array[9] == 9);
+  }
+
+  SECTION("Allocate Allocator") {
+    size_t size = 10 * sizeof(u_int8_t);
+    LinearAllocator* b = a.AllocateAllocator<LinearAllocator>(size);
+    REQUIRE(b != nullptr);
+    REQUIRE(a.GetUsedMemory() >= sizeof(LinearAllocator) + size);
+    
+    int *i = b->Allocate<int>();
+    REQUIRE(i != nullptr);
+    REQUIRE(b->GetUsedMemory() >= sizeof(int));
+
+    *i = 5;
+    REQUIRE(*i == 5);
+
+    b->Clear();
+    REQUIRE(b->GetUsedMemory() == 0);
+    REQUIRE(i != nullptr);
+    REQUIRE(*i == 5);
+
+    a.Dealocate(*b);
+    REQUIRE(b != nullptr);
+    REQUIRE(a.GetUsedMemory() == 0);
+    REQUIRE(*i == 5);
   }
 }
