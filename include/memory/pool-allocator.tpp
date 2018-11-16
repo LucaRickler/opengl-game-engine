@@ -32,8 +32,23 @@ void PoolAllocator<T>::Clear() {
 }
 
 template <class T>
+size_t PoolAllocator<T>::GetBlockSize() {
+  return sizeof(Block);
+}
+
+template <class T>
+u_int8_t PoolAllocator<T>::GetBlockAlignment() {
+  return alignof(Block);
+}
+
+template <class T>
+size_t PoolAllocator<T>::GetSizeForNumber(unsigned int number) {
+  return PoolAllocator<T>::GetBlockSize() * number;
+}
+
+template <class T>
 void* PoolAllocator<T>::AllocateMemory(size_t size, u_int8_t alignment) {
-  assert(size + 4 == _block_size); //&& alignment == _alignment); 
+  assert(PoolAllocator<T>::GetBlockSize() == _block_size && PoolAllocator<T>::GetBlockAlignment() == _alignment); 
   if(_first_free == nullptr) 
     return nullptr;
   

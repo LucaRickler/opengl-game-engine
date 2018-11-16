@@ -12,6 +12,10 @@ public:
   PoolAllocator(void* start, size_t size);
   virtual ~PoolAllocator();
   void Clear() override;
+
+  static size_t GetBlockSize();
+  static u_int8_t GetBlockAlignment();
+  static size_t GetSizeForNumber(unsigned int number);
 private:
   PoolAllocator(const PoolAllocator&);
   PoolAllocator& operator=(const PoolAllocator&);

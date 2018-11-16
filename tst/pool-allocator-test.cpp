@@ -16,7 +16,7 @@ TEST_CASE("PoolAllocator", "[Memory::PoolAllocator]") {
     int *j = a.Allocate<int>(*i);
     REQUIRE(j != nullptr);
     REQUIRE(*j == *i);
-    REQUIRE(reinterpret_cast<uintptr_t>(j) == reinterpret_cast<uintptr_t>(i) + static_cast<uintptr_t>(sizeof(int)) + 4);
+    REQUIRE(reinterpret_cast<uintptr_t>(j) == reinterpret_cast<uintptr_t>(i) + static_cast<uintptr_t>(PoolAllocator<int>::GetBlockSize()));
 
     *i = 0;
     REQUIRE(*j != *i);
