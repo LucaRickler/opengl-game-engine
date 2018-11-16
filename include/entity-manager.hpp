@@ -5,13 +5,15 @@
 
 #include <utils/utils.hpp>
 #include <memory/pool-allocator.hpp>
+#include <id-map.hpp>
 #include <entity.hpp>
 
+#include <map>
 #include <unordered_map>
 
 class EntityManager {
 public:
-  EntityManager(Memory::Allocator* main, size_t mapSize);
+  EntityManager(Memory::Allocator* main, size_t mapSize, unsigned int maxEntities);
   ~EntityManager();
 
   template <class T>
@@ -33,7 +35,7 @@ public:
 
     assert(ent != nullptr);
     
-    ent->_id = GetNewId();
+    ent->_id = this->GetNextId();
     _entities[ent->_id] = ent;
     return ent;
   }
@@ -41,15 +43,19 @@ public:
   Entity* GetEntity(const EntityId& id);
   void DestroyEntity(const EntityId& id);
 
+  EntityManager(const EntityManager&) = delete;
+	EntityManager& operator=(EntityManager&) = delete;
+
 private:
   Memory::Allocator* _main_allocator;
-  std::unordered_map<TypeId, Allocator*> _type_allocators;
+  std::map<TypeId, Allocator*> _type_allocators;
   std::unordered_map<EntityId, Entity*> _entities;
 
-  EntityId GetNewId();
+  IdMap<EntityId>* _id_map;
+  EntityId GetNextId();
+  void FreeId(const EntityId& id);
 
   size_t _map_size;
-  void* _next_start;
 };
 
 #endif
