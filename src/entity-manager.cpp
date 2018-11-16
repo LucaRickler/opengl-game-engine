@@ -1,12 +1,10 @@
 #include <entity-manager.hpp>
 
-EntityManager::EntityManager(Memory::Allocator* allocator, size_t map_size, unsigned int maxEntities) {
-  this->_main_allocator = allocator;
-  this->_map_size = map_size;
+EntityManager::EntityManager(Memory::Allocator* main, size_t mapSize, unsigned int maxEntities) {
+  this->_main_allocator = main;
+  this->_map_size = mapSize;
 
-  this->_id_map = allocator->Allocate<IdMap<EntityId>>(maxEntities, allocator);
-  EntityId id = this->_id_map->OccupyId();
-  this->FreeId(id);
+  this->_id_map = main->Allocate<IdMap<EntityId>>(maxEntities, main);
 }
 
 EntityManager::~EntityManager() {
@@ -28,6 +26,7 @@ void EntityManager::DestroyEntity(const EntityId& id) {
     TypeId tid = Utils::GetTypeId(*ent);
     _type_allocators[tid]->Dealocate(ent);
     this->_id_map->FreeId(id);
+    this->_entities.erase(id);
   }
 }
 
