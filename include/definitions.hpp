@@ -10,6 +10,8 @@ namespace Memory {
   class ProxyAllocator;
 }
 
+template <class T> class IdMap;
+
 typedef size_t TypeId;
 
 class SystemManager;
