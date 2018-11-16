@@ -37,7 +37,7 @@ public:
     *( ((size_t*)p) - 1 ) = length;
     
     for (size_t i = 0; i < length; i++) 
-      new (&p) T; 
+      new (p+i) T; 
     
     return p;
   }
@@ -59,7 +59,7 @@ public:
   template <class T>
   T* AllocateAllocator(size_t length) {
     assert(length != 0);
-    void* position = (void*)(reinterpret_cast<intptr_t>(this->GetCurrentPosition()) - static_cast<intptr_t>(length));
+    void* position = (void*)(reinterpret_cast<intptr_t>(this->GetCurrentPosition()) + static_cast<intptr_t>(length));
     return new (this->AllocateMemory(sizeof(T) + length, alignof(T))) T(position, length);
   }
 

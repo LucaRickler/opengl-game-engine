@@ -23,9 +23,9 @@ T IdMap<T>::OccupyId() {
 //  if(this->_next_free == this->_size)
 //    throw Excepition
   unsigned int i = this->_next_free;
-  this->_next_free = this->GetNextFree();
   this->_number_occupied++;
   this->_map[i].occupied = true;
+  this->_next_free = this->GetNextFree();
   return this->_map[i].id;
 }
 
@@ -58,7 +58,7 @@ unsigned int IdMap<T>::GetNumberFree() const {
 template <class T>
 unsigned int IdMap<T>::GetNextFree() {
   for (unsigned int i = 0; i < this->_size; i++) {
-    if (!this->_map[i].occupied) {
+    if (!(this->_map[i].occupied)) {
       return i;
     }
   }

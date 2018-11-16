@@ -56,8 +56,11 @@ TEST_CASE("LinearAllocator", "[Memory::LinearAllocator]") {
   }
 
   SECTION("Allocate Allocator") {
+    int *ii = a.Allocate<int>();
+    *ii = 10;
     size_t size = 10 * sizeof(u_int8_t);
     LinearAllocator* b = a.AllocateAllocator<LinearAllocator>(size);
+    REQUIRE(*ii == 10);
     REQUIRE(b != nullptr);
     REQUIRE(a.GetUsedMemory() >= sizeof(LinearAllocator) + size);
     
