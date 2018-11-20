@@ -15,6 +15,7 @@
 class ComponentManager {
   using ComponentMap=std::unordered_map<TypeId, std::unordered_map<ComponentId, Component*>>;
   using ComponentIterator=std::unordered_map<ComponentId, Component*>::iterator;
+  using EntityComponentMap=std::unordered_map<TypeId, std::unordered_map<EntityId, Component*>>;
 public:
   ComponentManager(Memory::Allocator* main, size_t mapSize, unsigned int maxComponents);
   ~ComponentManager();
@@ -45,7 +46,26 @@ public:
     return comp;
   }
 
+  template <class  T>
+  Component* GetComponent(const EntityId& eid) {
+    TypeId tid = Utils::GetTypeId<T>();
+    auto iter = this->_components_by_entity[tid].find(eid);
+    if (iter != this->_components_by_entity[tid].end())
+      return iter->second;
+    else
+      return nullptr;
+  }
+
   Component* GetComponent(const ComponentId& id);
+  
+  template <class T>
+  void DestroyComponent(const EntityId& eid) {
+    TypeId tid = Utils::GetTypeId<T>();
+    auto iter = this->_components_by_entity[tid].find(eid);
+    if (iter != this->_components_by_entity[tid].end())
+      this->DestroyComponent(iter->second->GetComponentId());
+  }
+
   void DestroyComponent(const ComponentId& id);
 
   template <class T>
@@ -62,6 +82,7 @@ private:
   Memory::Allocator* _main_allocator;
   std::map<TypeId, Allocator*> _type_allocators;
   ComponentMap _components;
+  EntityComponentMap _components_by_entity;
 
   IdMap<ComponentId>* _id_map;
   ComponentId GetNextId();

@@ -20,13 +20,13 @@ class SystemManager;
 class System;
 class EntityManager;
 
-typedef TypeId EntityId;
+typedef unsigned long EntityId;
 
 class Entity;
 
 class ComponentManager;
 
-typedef TypeId ComponentId;
+typedef unsigned long ComponentId;
 
 class Component;
 

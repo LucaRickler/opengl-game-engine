@@ -16,6 +16,9 @@ public:
   EntityManager(Memory::Allocator* main, size_t mapSize, unsigned int maxEntities);
   ~EntityManager();
 
+  void SetComponentManager(ComponentManager* compManager);
+  ComponentManager* GetComponentManager() const;
+
   template <class T>
   T* CreateEntity() {
     TypeId tid = Utils::GetTypeId<T>();
@@ -36,6 +39,8 @@ public:
     assert(ent != nullptr);
     
     ent->_id = this->GetNextId();
+    ent->_comp_manager = this->GetComponentManager();
+    ent->_ent_manager = this;
     _entities[ent->_id] = ent;
     return ent;
   }
@@ -56,6 +61,8 @@ private:
   void FreeId(const EntityId& id);
 
   size_t _map_size;
+
+  ComponentManager* _comp_manager;
 };
 
 #endif

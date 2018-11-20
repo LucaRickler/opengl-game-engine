@@ -12,6 +12,14 @@ EntityManager::~EntityManager() {
   _map_size = 0;
 }
 
+void EntityManager::SetComponentManager(ComponentManager* comManager) {
+  this->_comp_manager = comManager;
+}
+
+ComponentManager* EntityManager::GetComponentManager() const {
+  return this->_comp_manager;
+}
+
 Entity* EntityManager::GetEntity(const EntityId& id) {
   auto iter = _entities.find(id);
   if (iter == _entities.end())
