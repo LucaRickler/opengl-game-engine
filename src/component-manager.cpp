@@ -13,7 +13,14 @@ ComponentManager::~ComponentManager() {
 }
 
 Component* ComponentManager::GetComponent(const ComponentId& id) {
-  //TODO
+  auto iter = this->_components.begin();
+  for (; iter != this->_components.end(); iter++) {
+    auto iter2 = iter->second.begin();
+    for (; iter2 != iter->second.end(); iter2++) {
+      if (iter2->first == id)
+        return iter2->second;
+    }
+  }
   return nullptr;
 }
 
