@@ -32,7 +32,7 @@ void EntityManager::DestroyEntity(const EntityId& id) {
   Entity* ent = GetEntity(id);
   if (ent != nullptr) {
     TypeId tid = Utils::GetTypeId(*ent);
-    _type_allocators[tid]->Dealocate(ent);
+    _type_allocators[tid]->Dealocate(*ent);
     this->_id_map->FreeId(id);
     this->_entities.erase(id);
   }

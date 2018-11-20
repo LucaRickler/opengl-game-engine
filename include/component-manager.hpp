@@ -31,6 +31,7 @@ public:
 
       _type_allocators[tid] = alloc;
       _components[tid] = std::unordered_map<ComponentId, Component*>();
+      _components_by_entity[tid] = std::unordered_map<EntityId, Component*>();
 
     } else {
       alloc = iter->second;

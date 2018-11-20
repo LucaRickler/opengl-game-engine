@@ -5,6 +5,7 @@ ComponentManager::ComponentManager(Memory::Allocator* main, size_t mapSize, unsi
   this->_map_size = mapSize;
 
   this->_id_map = main->Allocate<IdMap<ComponentId>>(maxComponents, main);
+  assert(this->_id_map != nullptr);
 }
 
 ComponentManager::~ComponentManager() {
@@ -28,9 +29,11 @@ void ComponentManager::DestroyComponent(const ComponentId& id) {
   Component* comp = GetComponent(id);
   if(comp != nullptr) {
     TypeId tid = Utils::GetTypeId(*comp);
-    _type_allocators[tid]->Dealocate(comp);
+    EntityId eid = comp->GetEntityId();
+    _type_allocators[tid]->Dealocate(*comp);
     this->_id_map->FreeId(id);
     this->_components[tid].erase(id);
+    this->_components_by_entity[tid].erase(eid);
   }
 }
 
