@@ -20,7 +20,7 @@ public:
   ~ComponentManager();
 
   template <class T>
-  T* CreateComponent() {
+  T* CreateComponent(const EntityId& eid) {
     TypeId tid = Utils::GetTypeId<T>();
     auto iter = _type_allocators.find(tid);
     Memory::Allocator* alloc;
@@ -40,6 +40,7 @@ public:
     assert(comp != nullptr);
     
     comp->_id = this->GetNextId();
+    comp->_eid = eid;
     _components[tid][comp->_id] = comp;
     return comp;
   }
