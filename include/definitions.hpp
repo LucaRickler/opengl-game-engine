@@ -14,17 +14,19 @@ template <class T> class IdMap;
 
 typedef size_t TypeId;
 
+typedef TypeId SystemId;
+
 class SystemManager;
 class System;
 class EntityManager;
 
-typedef unsigned long EntityId;
+typedef TypeId EntityId;
 
 class Entity;
 
 class ComponentManager;
 
-typedef unsigned long ComponentId;
+typedef TypeId ComponentId;
 
 class Component;
 
