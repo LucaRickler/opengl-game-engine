@@ -11,7 +11,7 @@ public:
 
   template <class T, typename ...Args>
   T* Allocate(Args&&... args) {
-    return new (this->AllocateMemory(sizeof(T), alignof(T))) T(args...);
+    return new (this->AllocateMemory(sizeof(T), alignof(T))) T(std::forward<Args>(args)...);
   }
 
   template <class T>
