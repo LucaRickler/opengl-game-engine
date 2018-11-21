@@ -1,5 +1,6 @@
 #include <system-manager.hpp>
 #include <queue>
+#include <system.hpp>
 
 SystemManager::SystemManager(Memory::Allocator* main) {
   this->_main_allocator = main;
@@ -15,6 +16,18 @@ void SystemManager::SetComponentManager(ComponentManager* comManager) {
 
 ComponentManager* SystemManager::GetComponentManager() const {
   return this->_comp_manager;
+}
+
+void SystemManager::Update() {
+  for (unsigned int i = 0; i < this->_execution_order.size(); i++) {
+    this->_execution_order[i]->PreUpdate();
+  }
+  for (unsigned int i = 0; i < this->_execution_order.size(); i++) {
+    this->_execution_order[i]->Update();
+  }
+  for (unsigned int i = 0; i < this->_execution_order.size(); i++) {
+    this->_execution_order[i]->PostUpdate();
+  }
 }
 
 void SystemManager::SortSystems() {

@@ -55,6 +55,8 @@ public:
     this->SortSystems();
   }
 
+  void Update();
+
 
   SystemManager(const SystemManager&) = delete;
 	SystemManager& operator=(SystemManager&) = delete;
