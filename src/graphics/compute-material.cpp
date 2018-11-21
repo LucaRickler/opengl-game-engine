@@ -1,4 +1,4 @@
-#include <compute-material.hpp>
+#include <graphics/compute-material.hpp>
 
 ComputeMaterial::ComputeMaterial() {}
 

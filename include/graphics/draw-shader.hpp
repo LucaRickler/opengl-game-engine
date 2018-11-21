@@ -1,7 +1,7 @@
 #ifndef DRAW_SHADER_HPP
 #define DRAW_SHADER_HPP
 
-#include <shader.hpp>
+#include <graphics/shader.hpp>
 #include <string>
 
 class DrawShader : public Shader {

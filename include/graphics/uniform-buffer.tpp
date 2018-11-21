@@ -1,4 +1,4 @@
-#include <gl-object.hpp>
+#include <graphics/gl-object.hpp>
 
 template <class T>
 UniformBuffer<T>::UniformBuffer(T* data, int point) : Buffer<T>(data){

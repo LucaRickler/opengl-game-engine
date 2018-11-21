@@ -2,7 +2,7 @@
 #define TEXTURE_HPP
 
 #include <dependencies.hpp>
-#include <gl-object.hpp>
+#include <graphics/gl-object.hpp>
 
 class Texture : public GLObject {
 public:

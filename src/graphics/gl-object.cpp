@@ -1,4 +1,4 @@
-#include <gl-object.hpp>
+#include <graphics/gl-object.hpp>
 
 GLObject::GLObject() {}
 

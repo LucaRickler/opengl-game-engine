@@ -1,4 +1,4 @@
-#include <window.hpp>
+#include <graphics/window.hpp>
 #include <core/exception.hpp>
 
 Window::Window(unsigned int width, unsigned int height) {

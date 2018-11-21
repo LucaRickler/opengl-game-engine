@@ -1,4 +1,4 @@
-#include <texture2d.hpp>
+#include <graphics/texture2d.hpp>
 #include <core/exception.hpp>
 #include <stb_image.hpp>
 #include <sstream>

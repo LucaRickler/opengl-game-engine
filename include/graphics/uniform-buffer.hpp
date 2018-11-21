@@ -1,7 +1,7 @@
 #ifndef UNIFORM_BUFFER_HPP
 #define UNIFORM_BUFFER_HPP
 
-#include <buffer.hpp>
+#include <graphics/buffer.hpp>
 
 template<class T>
 class UniformBuffer : public Buffer<T> {
@@ -10,6 +10,6 @@ public:
   virtual ~UniformBuffer();
 };
 
-#include <uniform-buffer.tpp>
+#include <graphics/uniform-buffer.tpp>
 
 #endif

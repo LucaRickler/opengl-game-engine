@@ -2,6 +2,9 @@
 #define MOONBEAM_HPP
 
 #include <dependencies.hpp>
+
+#include <core/exception.hpp>
+
 #include <core/memory/allocator.hpp>
 #include <core/memory/linear-allocator.hpp>
 #include <core/memory/stack-allocator.hpp>
@@ -18,22 +21,21 @@
 #include <core/component.hpp>
 #include <core/component-manager.hpp>
 
-#include <core/exception.hpp>
-#include <gl-object.hpp>
-#include <window.hpp>
-#include <buffer.hpp>
-#include <uniform-buffer.hpp>
-#include <shader.hpp>
-#include <draw-shader.hpp>
-#include <compute-shader.hpp>
-#include <texture.hpp>
-#include <texture2d.hpp>
-#include <material.hpp>
-#include <compute-material.hpp>
-#include <vertex.hpp>
-#include <mesh.hpp>
+#include <graphics/gl-object.hpp>
+#include <graphics/window.hpp>
+#include <graphics/buffer.hpp>
+#include <graphics/uniform-buffer.hpp>
+#include <graphics/shader.hpp>
+#include <graphics/draw-shader.hpp>
+#include <graphics/compute-shader.hpp>
+#include <graphics/texture.hpp>
+#include <graphics/texture2d.hpp>
+#include <graphics/material.hpp>
+#include <graphics/compute-material.hpp>
+#include <graphics/vertex.hpp>
+#include <graphics/mesh.hpp>
 #include <model.hpp>
-#include <camera.hpp>
+#include <graphics/camera.hpp>
 
 #include <moonbeam-engine.hpp>
 

@@ -1,7 +1,7 @@
 #ifndef TEXTURE_2D_HPP
 #define TEXTURE_2D_HPP
 
-#include <texture.hpp>
+#include <graphics/texture.hpp>
 #include <string>
 
 class Texture2D : public Texture {

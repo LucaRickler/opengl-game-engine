@@ -1,4 +1,4 @@
-#include <texture.hpp>
+#include <graphics/texture.hpp>
 
 Texture::Texture() {
   glGenTextures(1, RefGLId());

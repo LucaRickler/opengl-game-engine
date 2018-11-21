@@ -1,5 +1,5 @@
-#include <mesh.hpp>
-#include <vertex.hpp>
+#include <graphics/mesh.hpp>
+#include <graphics/vertex.hpp>
 #include <algorithm>
 
 #include <iostream>

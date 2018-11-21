@@ -1,7 +1,7 @@
 #ifndef COMPUTE_SHADER_HPP
 #define COMPUTE_SHADER_HPP
 
-#include <shader.hpp>
+#include <graphics/shader.hpp>
 #include <string>
 
 class ComputeShader : public Shader {

@@ -1,7 +1,7 @@
 #ifndef COMPUTE_MATERIAL_HPP
 #define COMPUTE_MATERIAL_HPP
 
-#include <material.hpp>
+#include <graphics/material.hpp>
 
 class ComputeMaterial: public Material {
 public:

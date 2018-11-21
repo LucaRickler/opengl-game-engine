@@ -2,7 +2,7 @@
 #define BUFFER_HPP
 
 #include <dependencies.hpp>
-#include <gl-object.hpp>
+#include <graphics/gl-object.hpp>
 
 template <class T>
 class Buffer : public GLObject{
@@ -20,6 +20,6 @@ protected:
   T* _data;
 };
 
-#include <buffer.tpp>
+#include <graphics/buffer.tpp>
 
 #endif

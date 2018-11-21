@@ -1,4 +1,4 @@
-#include <vertex.hpp>
+#include <graphics/vertex.hpp>
 
 Vertex Vertex::CreateVertex(glm::vec4 point, glm::vec2 uv, glm::vec3 normal) {
   Vertex output;

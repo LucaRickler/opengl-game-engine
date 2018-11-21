@@ -1,4 +1,4 @@
-#include <draw-shader.hpp>
+#include <graphics/draw-shader.hpp>
 
 DrawShader::DrawShader() : Shader() {}
 

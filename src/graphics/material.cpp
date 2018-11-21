@@ -1,6 +1,6 @@
-#include <material.hpp>
-#include <shader.hpp>
-#include <texture.hpp>
+#include <graphics/material.hpp>
+#include <graphics/shader.hpp>
+#include <graphics/texture.hpp>
 
 #include <algorithm>
 

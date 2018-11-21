@@ -2,7 +2,7 @@
 #define SHADER_H
 
 #include  <dependencies.hpp>
-#include <gl-object.hpp>
+#include <graphics/gl-object.hpp>
 #include <string>
 
 class Shader : public GLObject {

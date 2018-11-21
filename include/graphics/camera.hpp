@@ -2,9 +2,10 @@
 #define CAMERA_HPP
 
 #include <dependencies.hpp>
-#include <uniform-buffer.hpp>
+#include <graphics/uniform-buffer.hpp>
+#include <core/component.hpp>
 
-class Camera {
+class Camera : public Component {
 public:
   Camera();
   Camera(const glm::vec3& pos, const glm::vec3& target, const glm::vec3& up);

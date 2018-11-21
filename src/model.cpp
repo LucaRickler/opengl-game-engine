@@ -1,7 +1,7 @@
 #include <model.hpp>
-#include <mesh.hpp>
-#include <shader.hpp>
-#include <material.hpp>
+#include <graphics/mesh.hpp>
+#include <graphics/shader.hpp>
+#include <graphics/material.hpp>
 
 Model::Model() {
   this->_matrix = glm::mat4(1);
