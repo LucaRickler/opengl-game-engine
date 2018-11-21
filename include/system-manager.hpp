@@ -7,6 +7,7 @@
 #include <memory/allocator.hpp>
 
 #include <unordered_map>
+#include <vector>
 
 class SystemManager {
 public:
@@ -21,19 +22,21 @@ public:
     SystemId tid = Utils::GetTypeId<T>();
     auto iter = _systems.find(tid);
     if (iter != _systems.end() && iter->second != nullptr)
-      return iter->second;
+      return (T*)iter->second;
     
     T* sys = _main_allocator->Allocate<T>(args...);
 
     assert(sys != nullptr);
 
     sys->_id = tid;
+    sys->_sys_manager = this;
+    sys->_comp_manager = this->_comp_manager;
     _systems[tid] = sys;
     return sys;
   }
 
   template <class T>
-  System* GetSystem() const {
+  T* GetSystem() const {
     SystemId tid = Utils::GetTypeId<T>();
     auto iter = _systems.find(tid);
     if (iter != _systems.end() && iter->second != nullptr)
@@ -43,7 +46,13 @@ public:
 
   template <class ...T>
   void AddDependencies(System* target, T... dependencies) {
+    auto iter = this->_dependecy_map.find(target);
+    if (iter != this->_dependecy_map.end()) {
+      this->_dependecy_map[target] = std::vector<System*>();
+      this->_dependecy_map[target].push_back(std::forward<T>(dependencies)...);
+    }
 
+    this->SortSystems();
   }
 
 
@@ -54,6 +63,8 @@ private:
   std::unordered_map<SystemId, System*> _systems;
   Memory::Allocator* _main_allocator;
 
+  std::unordered_map<System*, std::vector<System*>> _dependecy_map;
+  std::vector<System*> _execution_order;
   void SortSystems();
 
   ComponentManager* _comp_manager;

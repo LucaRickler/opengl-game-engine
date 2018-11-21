@@ -1,4 +1,5 @@
 #include <system-manager.hpp>
+#include <queue>
 
 SystemManager::SystemManager(Memory::Allocator* main) {
   this->_main_allocator = main;
@@ -17,5 +18,35 @@ ComponentManager* SystemManager::GetComponentManager() const {
 }
 
 void SystemManager::SortSystems() {
-  
+  std::unordered_map<System*, int> indegree;
+  for (auto iter = this->_systems.begin(); iter != this->_systems.end(); iter++)
+    indegree[iter->second] = 0;
+  for (auto iter1 = this->_dependecy_map.begin(); iter1 != this->_dependecy_map.end(); iter1++) {
+    for (auto iter2 = iter1->second.begin(); iter2 != iter1->second.end(); iter2++) {
+      indegree[*iter2] += 1;
+    }
+  }
+
+  std::queue<System*> q;
+
+  for (auto iter = this->_systems.begin(); iter != this->_systems.end(); iter++)
+    if (indegree[iter->second] == 0)
+      q.push(iter->second);
+
+  unsigned int count = 0;
+
+  while(!q.empty()) {
+    System* s = q.front();
+    q.pop();
+    this->_execution_order.push_back(s);
+
+    for (auto iter = this->_dependecy_map[s].begin(); iter != this->_dependecy_map[s].end(); iter++) {
+      indegree[*iter]--;
+      if  (indegree[*iter] == 0)
+        q.push(*iter);
+    }
+    count++;
+  }
+
+  assert(count == this->_dependecy_map.size());
 }

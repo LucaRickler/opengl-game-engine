@@ -18,8 +18,8 @@ public:
   bool IsActive() const;
 
   template <class ...T>
-  void AddDependencies(T ...dependencies) {
-    this->_sys_manager->AddDependencies(this, dependencies...);
+  void AddDependencies(T&& ...dependencies) {
+    this->_sys_manager->AddDependencies(this, std::forward<T>(dependencies)...);
   }
   
   friend class SystemManager;
