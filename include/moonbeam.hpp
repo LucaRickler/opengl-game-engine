@@ -18,7 +18,7 @@
 #include <core/component.hpp>
 #include <core/component-manager.hpp>
 
-#include <exception.hpp>
+#include <core/exception.hpp>
 #include <gl-object.hpp>
 #include <window.hpp>
 #include <buffer.hpp>

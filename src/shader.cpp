@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-#include <exception.hpp>
+#include <core/exception.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 Shader::Shader() {}

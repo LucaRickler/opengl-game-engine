@@ -1,5 +1,5 @@
 #include <window.hpp>
-#include <exception.hpp>
+#include <core/exception.hpp>
 
 Window::Window(unsigned int width, unsigned int height) {
   this->_height = height;

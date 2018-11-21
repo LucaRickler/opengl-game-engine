@@ -1,5 +1,5 @@
 #include <texture2d.hpp>
-#include <exception.hpp>
+#include <core/exception.hpp>
 #include <stb_image.hpp>
 #include <sstream>
 
