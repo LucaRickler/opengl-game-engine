@@ -1,4 +1,4 @@
-#include <entity-manager.hpp>
+#include <core/entity-manager.hpp>
 
 EntityManager::EntityManager(Memory::Allocator* main, size_t mapSize, unsigned int maxEntities) {
   this->_main_allocator = main;

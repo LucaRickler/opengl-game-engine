@@ -1,6 +1,6 @@
-#include <system-manager.hpp>
+#include <core/system-manager.hpp>
 #include <queue>
-#include <system.hpp>
+#include <core/system.hpp>
 
 SystemManager::SystemManager(Memory::Allocator* main) {
   this->_main_allocator = main;

@@ -3,8 +3,8 @@
 
 #include <dependencies.hpp>
 
-#include <utils/utils.hpp>
-#include <memory/allocator.hpp>
+#include <core/utils/utils.hpp>
+#include <core/memory/allocator.hpp>
 
 #include <unordered_map>
 #include <vector>

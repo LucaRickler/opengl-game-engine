@@ -2,7 +2,7 @@
 #define POOL_ALLOCATOR_HPP
 
 #include <dependencies.hpp>
-#include <memory/allocator.hpp>
+#include <core/memory/allocator.hpp>
 
 namespace Memory {
 
@@ -37,6 +37,6 @@ private:
 };
 }
 
-#include <memory/pool-allocator.tpp>
+#include <core/memory/pool-allocator.tpp>
 
 #endif

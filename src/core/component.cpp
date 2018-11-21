@@ -1,4 +1,4 @@
-#include <component.hpp>
+#include <core/component.hpp>
 
 Component::Component() {}
 

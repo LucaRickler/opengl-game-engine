@@ -2,7 +2,7 @@
 #define STACK_ALLOCATOR_HPP
 
 #include <dependencies.hpp>
-#include <memory/allocator.hpp>
+#include <core/memory/allocator.hpp>
 
 namespace Memory {
 class StackAllocator : public Allocator {

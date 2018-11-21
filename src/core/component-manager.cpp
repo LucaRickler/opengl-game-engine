@@ -1,4 +1,4 @@
-#include <component-manager.hpp>
+#include <core/component-manager.hpp>
 
 ComponentManager::ComponentManager(Memory::Allocator* main, size_t mapSize, unsigned int maxComponents) {
   this->_main_allocator = main;

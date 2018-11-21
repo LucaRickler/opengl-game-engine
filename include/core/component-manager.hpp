@@ -3,10 +3,10 @@
 
 #include <dependencies.hpp>
 
-#include <utils/utils.hpp>
-#include <memory/pool-allocator.hpp>
-#include <id-map.hpp>
-#include <component.hpp>
+#include <core/utils/utils.hpp>
+#include <core/memory/pool-allocator.hpp>
+#include <core/id-map.hpp>
+#include <core/component.hpp>
 
 #include <map>
 #include <unordered_map>

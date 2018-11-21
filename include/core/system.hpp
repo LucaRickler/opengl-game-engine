@@ -2,8 +2,8 @@
 #define SYSTEM_HPP
 
 #include <dependencies.hpp>
-#include <system-manager.hpp>
-#include <component-manager.hpp>
+#include <core/system-manager.hpp>
+#include <core/component-manager.hpp>
 
 class System {
 public:

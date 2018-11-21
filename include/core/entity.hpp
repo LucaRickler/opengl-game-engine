@@ -2,7 +2,7 @@
 #define ENTITY_HPP
 
 #include <dependencies.hpp>
-#include <component-manager.hpp>
+#include <core/component-manager.hpp>
 
 class Entity {
 public:

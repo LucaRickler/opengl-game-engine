@@ -2,7 +2,7 @@
 #define BLOCK_LIST_ALLOCATOR_HPP
 
 #include <dependencies.hpp>
-#include <memory/allocator.hpp>
+#include <core/memory/allocator.hpp>
 
 namespace Memory {
 class BlockListAllocator : public Allocator {

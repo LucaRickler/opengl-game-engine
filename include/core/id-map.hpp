@@ -30,6 +30,6 @@ private:
   Memory::Allocator* _allocator;
 };
 
-#include <id-map.tpp>
+#include <core/id-map.tpp>
 
 #endif
