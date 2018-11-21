@@ -30,6 +30,8 @@ typedef unsigned long ComponentId;
 
 class Component;
 
+typedef std::unordered_map<ComponentId, Component*>::iterator ComponentIterator;
+
 class MoonBeamEngine;
 
 #endif

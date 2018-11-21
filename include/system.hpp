@@ -3,6 +3,7 @@
 
 #include <dependencies.hpp>
 #include <system-manager.hpp>
+#include <component-manager.hpp>
 
 class System {
 public:
@@ -22,6 +23,12 @@ public:
   }
   
   friend class SystemManager;
+
+protected:
+  template <class T>
+  ComponentIterator* GetComponentIterator() {
+    return this->_comp_manager->GetComponentIterator<T>();
+  }
 
 private:
   SystemId _id;

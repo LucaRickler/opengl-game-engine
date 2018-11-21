@@ -9,6 +9,7 @@ using std::size_t;
 
 #include <assert.h>
 
+#include <unordered_map>
 
 #include <definitions.hpp>
 

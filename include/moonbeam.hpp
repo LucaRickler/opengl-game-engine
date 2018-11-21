@@ -11,6 +11,7 @@
 
 #include <id-map.hpp>
 
+#include <system.hpp>
 #include <system-manager.hpp>
 #include <entity.hpp>
 #include <entity-manager.hpp>

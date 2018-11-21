@@ -14,7 +14,6 @@
 
 class ComponentManager {
   using ComponentMap=std::unordered_map<TypeId, std::unordered_map<ComponentId, Component*>>;
-  using ComponentIterator=std::unordered_map<ComponentId, Component*>::iterator;
   using EntityComponentMap=std::unordered_map<TypeId, std::unordered_map<EntityId, Component*>>;
 public:
   ComponentManager(Memory::Allocator* main, size_t mapSize, unsigned int maxComponents);
