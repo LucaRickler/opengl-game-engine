@@ -11,6 +11,11 @@ using std::size_t;
 
 #include <unordered_map>
 
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include <glm/glm.hpp>
+
 #include <definitions.hpp>
 
 #endif

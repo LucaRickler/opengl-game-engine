@@ -7,7 +7,7 @@ TARGET := $(TARGETDIR)/moonbeam
 TESTTARGET := bin/test
 
 CFLAGS := -g -Wall -std=c++14
-LIB := -pthread 
+LIB := -pthread -lglfw -ldl
 INC := -I include
  
 SRCEXT := cpp

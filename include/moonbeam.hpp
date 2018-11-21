@@ -18,6 +18,23 @@
 #include <core/component.hpp>
 #include <core/component-manager.hpp>
 
+#include <exception.hpp>
+#include <gl-object.hpp>
+#include <window.hpp>
+#include <buffer.hpp>
+#include <uniform-buffer.hpp>
+#include <shader.hpp>
+#include <draw-shader.hpp>
+#include <compute-shader.hpp>
+#include <texture.hpp>
+#include <texture2d.hpp>
+#include <material.hpp>
+#include <compute-material.hpp>
+#include <vertex.hpp>
+#include <mesh.hpp>
+#include <model.hpp>
+#include <camera.hpp>
+
 #include <moonbeam-engine.hpp>
 
 #endif

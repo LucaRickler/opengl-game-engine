@@ -34,4 +34,24 @@ typedef std::unordered_map<ComponentId, Component*>::iterator ComponentIterator;
 
 class MoonBeamEngine;
 
+class Exception;
+class GLObject;
+class Window;
+class Texture;
+class Texture2D;
+class Shader;
+class DrawShader;
+class Material;
+class ComputeShader;
+class ComputeMaterial;
+struct Vertex;
+class Mesh;
+class Model;
+class Camera;
+
+struct TransfMatrices {
+  glm::mat4 view;
+  glm::mat4 projection;
+};
+
 #endif
