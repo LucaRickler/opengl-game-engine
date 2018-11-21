@@ -2,8 +2,9 @@
 #include <queue>
 #include <core/system.hpp>
 
-SystemManager::SystemManager(Memory::Allocator* main) {
+SystemManager::SystemManager(Memory::Allocator* main, size_t systemMemory) {
   this->_main_allocator = main;
+  this->_system_memory = systemMemory;
 }
 
 SystemManager::~SystemManager() {

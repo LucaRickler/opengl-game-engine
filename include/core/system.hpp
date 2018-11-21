@@ -30,6 +30,8 @@ protected:
     return this->_comp_manager->GetComponentIterator<T>();
   }
 
+  Memory::LinearAllocator* GetAllocator();
+
 private:
   SystemId _id;
 
@@ -41,6 +43,8 @@ private:
 
   ComponentManager* _comp_manager;
   SystemManager* _sys_manager;
+
+  Memory::LinearAllocator* _allocator;
 };
 
 #endif

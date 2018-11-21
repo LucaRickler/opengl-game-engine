@@ -36,7 +36,7 @@ TEST_CASE("SystemManager", "[SystemManager]") {
   unsigned int memorySize = 100000;
   void* memory = malloc(memorySize * sizeof(u_int8_t));
   LinearAllocator a(memory, memorySize * sizeof(u_int8_t));
-  SystemManager sm(&a);
+  SystemManager sm(&a, 1024*sizeof(u_int8_t));
   SECTION("System Creation") {
     System* s1 = sm.CreateSystem<S1>();
     REQUIRE(s1 != nullptr);

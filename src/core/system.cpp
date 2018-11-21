@@ -11,3 +11,7 @@ void System::SetActive(bool state) {
 bool System::IsActive() const {
   return this->_active;
 }
+
+Memory::LinearAllocator* System::GetAllocator() {
+  return this->_allocator;
+}

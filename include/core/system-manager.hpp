@@ -11,7 +11,7 @@
 
 class SystemManager {
 public:
-  SystemManager(Memory::Allocator* main);
+  SystemManager(Memory::Allocator* main, size_t systemMemory);
   ~SystemManager();
 
   void SetComponentManager(ComponentManager* compManager);
@@ -31,6 +31,7 @@ public:
     sys->_id = tid;
     sys->_sys_manager = this;
     sys->_comp_manager = this->_comp_manager;
+    sys->_allocator = _main_allocator->AllocateAllocator<Memory::LinearAllocator>(this->_system_memory);
     _systems[tid] = sys;
     return sys;
   }
@@ -70,6 +71,8 @@ private:
   void SortSystems();
 
   ComponentManager* _comp_manager;
+
+  size_t _system_memory;
   
 };
 
