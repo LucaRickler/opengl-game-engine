@@ -2,14 +2,12 @@
 #define CAMERA_HPP
 
 #include <dependencies.hpp>
-#include <graphics/uniform-buffer.hpp>
 #include <core/component.hpp>
 
 class Camera : public Component {
 public:
   Camera();
-  Camera(const glm::vec3& pos, const glm::vec3& target, const glm::vec3& up);
-  virtual ~Camera();
+  ~Camera() override;
 
   void SetPosition(glm::vec3& pos);
   void SetUp(glm::vec3& up);
@@ -32,21 +30,17 @@ public:
   void Deactivate();
 
 private:
-  glm::vec3 _position;
   glm::vec3 _up;
   glm::vec3 _target;
+
+  Transform* _transform;
 
   float _fow;
   float _ratio;
   float _near;
   float _far;
-
-  UniformBuffer<TransfMatrices>* _matrices_buffer;
-  TransfMatrices* _matrices;
   
-  void UpdateUniforms();
-  void UpdateView();
-  void UpdateProjection();
+  void GetTransform();
 
 };
 
