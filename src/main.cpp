@@ -9,13 +9,12 @@ const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 int main() {
-  Window* window = new Window(SCR_WIDTH, SCR_HEIGHT);
-  try {
-    window->Open();
-  } catch (Exception& e) {
-    std::cout << e.what() << std::endl;
-    return -1;
-  }
+  MoonBeamEngine engine;
+
+  Window* window = engine.CreateWindow(SCR_WIDTH, SCR_HEIGHT);
+  SystemManager* sm = engine.GetSystemManager();
+  EntityManager* em = engine.GetEntityManager();
+  ComponentManager* cm = engine.GetComponentManager();
 
   DrawShader shader;
   try {
