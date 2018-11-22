@@ -48,6 +48,7 @@ public:
     comp->_comp_manager = this;
     comp->_ent_manager = this->_ent_manager;
     _components[tid][comp->_id] = comp;
+    _components_by_entity[tid][comp->_eid] = comp;
     return comp;
   }
 

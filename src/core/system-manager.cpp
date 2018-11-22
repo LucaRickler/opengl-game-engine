@@ -62,5 +62,5 @@ void SystemManager::SortSystems() {
     count++;
   }
 
-  assert(count == this->_dependecy_map.size());
+  assert(count == this->_systems.size());
 }

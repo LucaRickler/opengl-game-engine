@@ -33,6 +33,7 @@ public:
     sys->_comp_manager = this->_comp_manager;
     sys->_allocator = _main_allocator->AllocateAllocator<Memory::LinearAllocator>(this->_system_memory);
     _systems[tid] = sys;
+    this->SortSystems();
     return sys;
   }
 
