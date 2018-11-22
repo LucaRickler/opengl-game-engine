@@ -52,11 +52,11 @@ public:
   }
 
   template <class  T>
-  Component* GetComponent(const EntityId& eid) {
+  T* GetComponent(const EntityId& eid) {
     TypeId tid = Utils::GetTypeId<T>();
     auto iter = this->_components_by_entity[tid].find(eid);
     if (iter != this->_components_by_entity[tid].end())
-      return iter->second;
+      return (T*)iter->second;
     else
       return nullptr;
   }
