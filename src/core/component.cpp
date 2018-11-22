@@ -19,3 +19,11 @@ bool Component::operator==(const Component& other) const {
 bool Component::operator!=(const Component& other) const {
   return !(*this == other);
 }
+
+ComponentManager* Component::GetComponentManager() {
+  return this->_comp_manager;
+}
+
+EntityManager* Component::GetEntityManager() {
+  return this->_ent_manager;
+}

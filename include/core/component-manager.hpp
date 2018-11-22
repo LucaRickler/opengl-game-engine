@@ -19,6 +19,9 @@ public:
   ComponentManager(Memory::Allocator* main, size_t mapSize, unsigned int maxComponents);
   ~ComponentManager();
 
+  void SetEntityManager(EntityManager* entManager);
+  EntityManager* GetEntityManager() const;
+
   template <class T>
   T* CreateComponent(const EntityId& eid) {
     TypeId tid = Utils::GetTypeId<T>();
@@ -42,6 +45,8 @@ public:
     
     comp->_id = this->GetNextId();
     comp->_eid = eid;
+    comp->_comp_manager = this;
+    comp->_ent_manager = this->_ent_manager;
     _components[tid][comp->_id] = comp;
     return comp;
   }
@@ -87,6 +92,8 @@ private:
   IdMap<ComponentId>* _id_map;
   ComponentId GetNextId();
   void FreeId(const ComponentId& id);
+
+  EntityManager* _ent_manager;
 
   size_t _map_size;
 };

@@ -30,6 +30,7 @@ MoonBeamEngine::MoonBeamEngine() {
 
   this->_sys_manager->SetComponentManager(this->_comp_manager);
   this->_ent_manager->SetComponentManager(this->_comp_manager);
+  this->_comp_manager->SetEntityManager(this->_ent_manager);
 }
 
 MoonBeamEngine::~MoonBeamEngine() {

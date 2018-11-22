@@ -13,6 +13,15 @@ ComponentManager::~ComponentManager() {
   _map_size = 0;
 }
 
+void ComponentManager::SetEntityManager(EntityManager* entManager) {
+  if (entManager != nullptr)
+    this->_ent_manager = entManager;
+}
+
+EntityManager* ComponentManager::GetEntityManager() const {
+  return this->_ent_manager;
+}
+
 Component* ComponentManager::GetComponent(const ComponentId& id) {
   auto iter = this->_components.begin();
   for (; iter != this->_components.end(); iter++) {

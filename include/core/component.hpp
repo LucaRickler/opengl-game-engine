@@ -16,10 +16,16 @@ public:
 
   friend class ComponentManager;
 protected:
+
+  ComponentManager* GetComponentManager();
+  EntityManager* GetEntityManager();
+
 private:
   ComponentId _id;
   EntityId _eid;
-  
+
+  ComponentManager* _comp_manager;
+  EntityManager* _ent_manager;
 };
 
 #endif
