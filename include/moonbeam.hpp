@@ -21,6 +21,8 @@
 #include <core/component.hpp>
 #include <core/component-manager.hpp>
 
+#include <transform.hpp>
+
 #include <graphics/gl-object.hpp>
 #include <graphics/window.hpp>
 #include <graphics/buffer.hpp>

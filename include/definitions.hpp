@@ -11,6 +11,7 @@ namespace Memory {
 }
 
 template <class T> class IdMap;
+class Exception;
 
 typedef size_t TypeId;
 
@@ -32,9 +33,8 @@ class Component;
 
 typedef std::unordered_map<ComponentId, Component*>::iterator ComponentIterator;
 
-class MoonBeamEngine;
+class Transform;
 
-class Exception;
 class GLObject;
 class Window;
 class Texture;
@@ -53,5 +53,7 @@ struct TransfMatrices {
   glm::mat4 view;
   glm::mat4 projection;
 };
+
+class MoonBeamEngine;
 
 #endif
