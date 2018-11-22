@@ -10,11 +10,21 @@ const unsigned int SCR_HEIGHT = 600;
 
 int main() {
   MoonBeamEngine engine;
-
-  Window* window = engine.CreateWindow(SCR_WIDTH, SCR_HEIGHT);
   SystemManager* sm = engine.GetSystemManager();
   EntityManager* em = engine.GetEntityManager();
   ComponentManager* cm = engine.GetComponentManager();
+
+  Window* window = engine.CreateWindow(SCR_WIDTH, SCR_HEIGHT);
+
+  GraphicSystem* gs = sm->CreateSystem<GraphicSystem>();
+
+  Entity* cameraEnt = em->CreateEntity<Entity>();
+  Transform* cameraTransf = cameraEnt->AddComponent<Transform>();
+  cameraTransf->SetPosition(glm::vec3(0.0f, 0.0f, 3.0f));
+  Camera* cam = cameraEnt->AddComponent<Camera>();
+
+  gs->SetMainCamera(cam);
+
 
   DrawShader shader;
   try {
@@ -61,9 +71,7 @@ int main() {
   Model mod;
   mod.SetMaterial(drawMat);
   mod.SetMesh(m1);
-
-  Camera camera(glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-
+  
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
@@ -71,6 +79,8 @@ int main() {
   auto matrix = mod.GetMatrix();
   
   while (!window->ShouldClose()) {
+    sm->Update();
+
     compMat->Bind();
     compute.SetFloat("time", (float)glfwGetTime());
     compMat->Dispatch();
@@ -89,7 +99,7 @@ int main() {
     glfwPollEvents();
   }
     
-  delete window;
+  //delete window;
   //glfwTerminate();
   return 0;
 }
