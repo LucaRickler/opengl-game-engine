@@ -49,6 +49,8 @@ class Mesh;
 class Model;
 class Camera;
 
+class GraphicSystem;
+
 struct TransfMatrices {
   glm::mat4 view;
   glm::mat4 projection;

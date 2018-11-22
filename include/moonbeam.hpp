@@ -39,6 +39,8 @@
 #include <model.hpp>
 #include <graphics/camera.hpp>
 
+#include <graphics/graphic-system.hpp>
+
 #include <moonbeam-engine.hpp>
 
 #endif
