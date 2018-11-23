@@ -5,7 +5,7 @@
 
 #include <core/utils/utils.hpp>
 #include <core/memory/pool-allocator.hpp>
-#include <core/id-map.hpp>
+#include <core/container/id-map.hpp>
 #include <core/entity.hpp>
 
 #include <map>
@@ -58,7 +58,7 @@ namespace MoonBeam {
       std::map<TypeId, Memory::Allocator*> _type_allocators;
       std::unordered_map<EntityId, Entity*> _entities;
 
-      IdMap<EntityId>* _id_map;
+      Container::IdMap<EntityId>* _id_map;
       EntityId GetNextId();
       void FreeId(const EntityId& id);
 

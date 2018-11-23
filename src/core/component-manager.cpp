@@ -7,7 +7,7 @@ ComponentManager::ComponentManager(Memory::Allocator* main, size_t mapSize, unsi
   this->_main_allocator = main;
   this->_map_size = mapSize;
 
-  this->_id_map = main->Allocate<IdMap<ComponentId>>(maxComponents, main);
+  this->_id_map = main->Allocate<Container::IdMap<ComponentId>>(maxComponents, main);
   assert(this->_id_map != nullptr);
 }
 

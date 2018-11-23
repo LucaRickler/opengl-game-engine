@@ -12,7 +12,7 @@
 #include <core/memory/pool-allocator.hpp>
 #include <core/memory/proxy-allocator.hpp>
 
-#include <core/id-map.hpp>
+#include <core/container/id-map.hpp>
 
 #include <core/system.hpp>
 #include <core/system-manager.hpp>

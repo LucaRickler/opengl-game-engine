@@ -5,7 +5,7 @@
 
 #include <core/utils/utils.hpp>
 #include <core/memory/pool-allocator.hpp>
-#include <core/id-map.hpp>
+#include <core/container/id-map.hpp>
 #include <core/component.hpp>
 
 #include <map>
@@ -92,7 +92,7 @@ namespace MoonBeam {
       ComponentMap _components;
       EntityComponentMap _components_by_entity;
 
-      IdMap<ComponentId>* _id_map;
+      Container::IdMap<ComponentId>* _id_map;
       ComponentId GetNextId();
       void FreeId(const ComponentId& id);
 

@@ -7,7 +7,7 @@ EntityManager::EntityManager(Memory::Allocator* main, size_t mapSize, unsigned i
   this->_main_allocator = main;
   this->_map_size = mapSize;
 
-  this->_id_map = main->Allocate<IdMap<EntityId>>(maxEntities, main);
+  this->_id_map = main->Allocate<Container::IdMap<EntityId>>(maxEntities, main);
 }
 
 EntityManager::~EntityManager() {

@@ -12,30 +12,27 @@ namespace MoonBeam {
       class ProxyAllocator;
     }
 
-    template <class T> class IdMap;
+    namespace Container {
+      template <class T> class IdMap;
+
+    }
+
     class Exception;
 
     typedef size_t TypeId;
 
-    typedef TypeId SystemId;
-
     class SystemManager;
+    typedef TypeId SystemId;
     class System;
+
     class EntityManager;
-
     typedef unsigned long EntityId;
-
     class Entity;
 
     class ComponentManager;
-
     typedef unsigned long ComponentId;
-
     class Component;
-
     typedef std::unordered_map<ComponentId, Component*>::iterator ComponentIterator;
-
-
   }
 
   class Transform;
