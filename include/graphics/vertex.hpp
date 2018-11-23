@@ -3,6 +3,7 @@
 
 #include <dependencies.hpp>
 
+namespace MoonBeam { namespace Graphics {
 struct Vertex {  
   glm::vec4 point;
   glm::vec3 normal;
@@ -16,5 +17,7 @@ struct Vertex {
 const glm::vec2 zero2(0);
 const glm::vec3 zero3(0);
 const glm::vec4 zero4(0);
+
+}}
 
 #endif

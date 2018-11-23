@@ -1,6 +1,8 @@
 #include <core/memory/allocator.hpp>
 
-namespace Memory {
+using namespace MoonBeam;
+using namespace Core;
+using namespace Memory;
 
 Allocator::Allocator(void* start, size_t size) {
   this->_start = start;
@@ -76,6 +78,4 @@ void* Allocator::Add(void* pointer, size_t x) {
 
 void* Allocator::Subtract(void* pointer, size_t x) {
   return (void*)(reinterpret_cast<uintptr_t>(pointer)-x);
-}
-
 }

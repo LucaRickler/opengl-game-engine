@@ -3,6 +3,7 @@
 
 #include <dependencies.hpp>
 
+namespace MoonBeam {
 class Model {
 public:
   Model();
@@ -10,19 +11,19 @@ public:
 
   void Draw();
 
-  void SetMaterial(Material* mat);
-  void SetMesh(Mesh* mesh);
+  void SetMaterial(Graphics::Material* mat);
+  void SetMesh(Graphics::Mesh* mesh);
   
-  Material* GetMaterial() const;
-  Mesh* GetMesh() const;
+  Graphics::Material* GetMaterial() const;
+  Graphics::Mesh* GetMesh() const;
 
   const glm::mat4& GetMatrix() const;
   void SetMatrix(glm::mat4& matrix);
 
 private:
-  Mesh* _mesh;
-  Material* _material;
+  Graphics::Mesh* _mesh;
+  Graphics::Material* _material;
   glm::mat4 _matrix;
 };
-
+}
 #endif

@@ -2,6 +2,9 @@
 #include <graphics/camera.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 GraphicSystem::GraphicSystem() : _matrices_buffer(&this->_matrices, 0) {
 
 }

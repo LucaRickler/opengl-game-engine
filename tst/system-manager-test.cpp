@@ -2,6 +2,10 @@
 
 #include <moonbeam.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+using namespace Memory;
+
 class S1 : public System {
 public:
   S1() {}

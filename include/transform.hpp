@@ -4,7 +4,8 @@
 #include <dependencies.hpp>
 #include <core/component.hpp>
 
-class Transform : public Component {
+namespace MoonBeam{
+class Transform : public Core::Component {
 public:
   Transform();
   ~Transform() override;
@@ -24,5 +25,5 @@ private:
   glm::vec3 _rotation;
   glm::vec3 _scale;
 };
-
+}
 #endif

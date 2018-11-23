@@ -2,6 +2,10 @@
 
 #include <moonbeam.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+using namespace Memory;
+
 class E2 : public Entity {
 public:
   E2() {}

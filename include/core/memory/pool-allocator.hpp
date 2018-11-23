@@ -4,8 +4,7 @@
 #include <dependencies.hpp>
 #include <core/memory/allocator.hpp>
 
-namespace Memory {
-
+namespace MoonBeam { namespace Core { namespace Memory {
 template <class T>
 class PoolAllocator : public Allocator {
 public:
@@ -35,7 +34,7 @@ private:
   void* NextFree();
   void* GetCurrentPosition() override;
 };
-}
+}}}
 
 #include <core/memory/pool-allocator.tpp>
 

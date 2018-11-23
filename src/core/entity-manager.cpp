@@ -1,5 +1,8 @@
 #include <core/entity-manager.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+
 EntityManager::EntityManager(Memory::Allocator* main, size_t mapSize, unsigned int maxEntities) {
   this->_main_allocator = main;
   this->_map_size = mapSize;

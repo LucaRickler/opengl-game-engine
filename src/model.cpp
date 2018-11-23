@@ -3,6 +3,8 @@
 #include <graphics/shader.hpp>
 #include <graphics/material.hpp>
 
+using namespace MoonBeam;
+
 Model::Model() {
   this->_matrix = glm::mat4(1);
 }
@@ -16,19 +18,19 @@ void Model::Draw() {
   this->_mesh->Draw();
 }
 
-void Model::SetMaterial(Material* mat) {
+void Model::SetMaterial(Graphics::Material* mat) {
   this->_material = mat;
 }
 
-void Model::SetMesh(Mesh* mesh) {
+void Model::SetMesh(Graphics::Mesh* mesh) {
   this->_mesh = mesh;
 }
 
-Material* Model::GetMaterial() const {
+Graphics::Material* Model::GetMaterial() const {
   return this->_material;
 }
 
-Mesh* Model::GetMesh() const {
+Graphics::Mesh* Model::GetMesh() const {
   return this->_mesh;
 }
 

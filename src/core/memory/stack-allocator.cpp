@@ -1,5 +1,7 @@
 #include <core/memory/stack-allocator.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 StackAllocator::StackAllocator(void* start, size_t size) : Allocator(start, size) {

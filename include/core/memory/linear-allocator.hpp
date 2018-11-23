@@ -4,7 +4,7 @@
 #include <dependencies.hpp>
 #include <core/memory/allocator.hpp>
 
-namespace Memory {
+namespace MoonBeam { namespace Core { namespace Memory {
 class LinearAllocator : public Allocator {
 public:
   LinearAllocator(void* start, size_t size);
@@ -20,6 +20,6 @@ private:
   void DeallocateMemory(void* pointer) override;
   void* GetCurrentPosition() override;
 };
-}
+}}}
 
 #endif

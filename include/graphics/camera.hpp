@@ -4,7 +4,8 @@
 #include <dependencies.hpp>
 #include <core/component.hpp>
 
-class Camera : public Component {
+namespace MoonBeam { namespace Graphics {
+class Camera : public MoonBeam::Core::Component {
 public:
   Camera();
   ~Camera() override;
@@ -43,5 +44,6 @@ private:
   void GetTransform();
 
 };
+}}
 
 #endif

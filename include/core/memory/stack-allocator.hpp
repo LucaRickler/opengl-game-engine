@@ -4,7 +4,7 @@
 #include <dependencies.hpp>
 #include <core/memory/allocator.hpp>
 
-namespace Memory {
+namespace MoonBeam { namespace Core { namespace Memory {
 class StackAllocator : public Allocator {
 public:
   StackAllocator(void* start, size_t size);
@@ -28,6 +28,6 @@ private:
 
   void* GetCurrentPosition() override;
 };
-}
+}}}
 
 #endif

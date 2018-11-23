@@ -7,6 +7,9 @@
 #include <core/exception.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Shader::Shader() {}
 
 Shader::~Shader() {
@@ -57,7 +60,7 @@ void Shader::CheckCompileErrors(unsigned int shader, std::string type) {
     glGetShaderInfoLog(shader, 1024, NULL, infoLog);
     std::stringstream message;
     message << "Shader Compilation Error: \n" << type << "\n" << infoLog;
-    throw Exception(message.str());
+    throw Core::Exception(message.str());
   }
 }
 
@@ -69,7 +72,7 @@ void Shader::CheckLinkErrors(unsigned int program) {
     glGetProgramInfoLog(program, 1024, NULL, infoLog);
     std::stringstream message;
     message << "Shader Linking Error:\n" << infoLog;
-    throw Exception(message.str());
+    throw Core::Exception(message.str());
   }
 }
 
@@ -86,7 +89,7 @@ std::string* Shader::LoadShaderCode(const char* path) {
   } catch (std::ifstream::failure e) {
     std::stringstream message;
     message << "Shader file not successfully read:\n" << path;
-    throw Exception(message.str());
+    throw Core::Exception(message.str());
   }
   return code;
 }

@@ -1,5 +1,8 @@
 #include <graphics/compute-shader.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 ComputeShader::ComputeShader() : Shader() {}
 
 ComputeShader::~ComputeShader() {}

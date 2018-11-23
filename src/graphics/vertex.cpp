@@ -1,5 +1,8 @@
 #include <graphics/vertex.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Vertex Vertex::CreateVertex(glm::vec4 point, glm::vec2 uv, glm::vec3 normal) {
   Vertex output;
   output.point = point;

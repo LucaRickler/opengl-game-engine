@@ -4,6 +4,9 @@
 
 #include <iostream>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Mesh::Mesh() {}
 
 Mesh::~Mesh() {

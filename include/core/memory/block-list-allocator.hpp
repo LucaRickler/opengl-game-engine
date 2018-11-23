@@ -4,7 +4,7 @@
 #include <dependencies.hpp>
 #include <core/memory/allocator.hpp>
 
-namespace Memory {
+namespace MoonBeam { namespace Core { namespace Memory {
 class BlockListAllocator : public Allocator {
 public:
   BlockListAllocator(void* start, size_t size);
@@ -29,6 +29,6 @@ public:
   void DeallocateMemory(void* pointer) override;
   void* GetCurrentPosition() override;
 };
-}
+}}}
 
 #endif

@@ -1,5 +1,8 @@
 #include <core/entity.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+
 Entity::Entity() {}
 
 Entity::~Entity() {}

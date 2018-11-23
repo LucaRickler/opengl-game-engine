@@ -1,5 +1,7 @@
 #include <core/memory/proxy-allocator.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 ProxyAllocator::ProxyAllocator(Allocator& allocator) : Allocator(allocator.GetStart(), allocator.GetSize()), _allocator(allocator) {}

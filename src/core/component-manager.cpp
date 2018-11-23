@@ -1,5 +1,8 @@
 #include <core/component-manager.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+
 ComponentManager::ComponentManager(Memory::Allocator* main, size_t mapSize, unsigned int maxComponents) {
   this->_main_allocator = main;
   this->_map_size = mapSize;

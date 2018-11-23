@@ -3,7 +3,7 @@
 
 #include <dependencies.hpp>
 
-namespace Memory {
+namespace MoonBeam { namespace Core { namespace Memory {
 class Allocator {
 public:
   Allocator(void* start, size_t size);
@@ -89,6 +89,6 @@ protected:
   void* Subtract(void* pointer, size_t x);
 
 };
-}
+}}}
 
 #endif

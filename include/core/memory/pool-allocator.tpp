@@ -1,4 +1,4 @@
-using namespace Memory;
+namespace MoonBeam { namespace Core { namespace Memory {
 
 template <class T>
 PoolAllocator<T>::PoolAllocator(void* start, size_t size) : Allocator(start, size) {
@@ -88,3 +88,5 @@ template <class T>
 void* PoolAllocator<T>::GetCurrentPosition() {
   return nullptr;
 }
+
+}}}

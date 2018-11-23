@@ -2,6 +2,8 @@
 
 #include <moonbeam.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 TEST_CASE("LinearAllocator", "[Memory::LinearAllocator]") {

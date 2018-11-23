@@ -3,6 +3,7 @@
 
 #include <graphics/material.hpp>
 
+namespace MoonBeam { namespace Graphics {
 class ComputeMaterial: public Material {
 public:
   ComputeMaterial();
@@ -20,5 +21,5 @@ private:
                        unsigned int groupsZ);
   bool CheckWorkGroup(unsigned int size, int axis);
 };
-
+}}
 #endif

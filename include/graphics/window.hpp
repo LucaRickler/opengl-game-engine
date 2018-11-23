@@ -3,6 +3,7 @@
 
 #include <dependencies.hpp>
 
+namespace MoonBeam { namespace Graphics {
 class Window {
 public:
   Window(unsigned int width, unsigned int height);
@@ -21,4 +22,5 @@ private:
 
   static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 };
+}}
 #endif

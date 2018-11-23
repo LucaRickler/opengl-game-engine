@@ -4,7 +4,7 @@
 #include <dependencies.hpp>
 #include <map>
 
-
+namespace MoonBeam { namespace Graphics {
 class Material {
 public:
   Material();
@@ -21,5 +21,6 @@ private:
   Shader* _shader;
   std::map<unsigned int, Texture*> _textures;
 };
+}}
 
 #endif

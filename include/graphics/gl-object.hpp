@@ -4,6 +4,7 @@
 #include <dependencies.hpp>
 #include <string>
 
+namespace MoonBeam { namespace Graphics {
 class GLObject {
 public:
   GLObject();
@@ -20,5 +21,6 @@ private:
   unsigned int _gl_id;
   unsigned int _gl_type;
 };
+}}
 
 #endif

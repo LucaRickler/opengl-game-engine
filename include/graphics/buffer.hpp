@@ -4,6 +4,7 @@
 #include <dependencies.hpp>
 #include <graphics/gl-object.hpp>
 
+namespace MoonBeam { namespace Graphics {
 template <class T>
 class Buffer : public GLObject{
 public:
@@ -19,6 +20,7 @@ public:
 protected:
   T* _data;
 };
+}}
 
 #include <graphics/buffer.tpp>
 

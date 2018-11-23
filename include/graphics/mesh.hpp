@@ -4,6 +4,7 @@
 #include <dependencies.hpp>
 #include <vector>
 
+namespace MoonBeam { namespace Graphics {
 class Mesh {
 public:
   Mesh();
@@ -24,5 +25,6 @@ private:
   void GenerateBuffers();
   void RemoveBuffers();
 };
+}}
 
 #endif

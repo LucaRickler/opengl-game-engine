@@ -1,5 +1,8 @@
 #include <graphics/draw-shader.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 DrawShader::DrawShader() : Shader() {}
 
 DrawShader::~DrawShader() {}

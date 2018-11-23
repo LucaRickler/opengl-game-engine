@@ -1,5 +1,7 @@
 #include <core/memory/linear-allocator.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 LinearAllocator::LinearAllocator(void* start, size_t size) : Allocator(start, size) {

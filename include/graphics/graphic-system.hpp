@@ -5,7 +5,8 @@
 #include <core/system.hpp>
 #include <graphics/uniform-buffer.hpp>
 
-class GraphicSystem : public System {
+namespace MoonBeam { namespace Graphics {
+class GraphicSystem : public MoonBeam::Core::System {
 public:
   GraphicSystem();
   ~GraphicSystem() override;
@@ -43,5 +44,6 @@ private:
   void UpdateUniforms();
 
 };
+}}
 
 #endif

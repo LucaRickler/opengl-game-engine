@@ -1,3 +1,4 @@
+namespace MoonBeam { namespace Graphics {
 template <class T>
 Buffer<T>::Buffer(T* data) {}
 
@@ -25,3 +26,4 @@ template <class T>
 T* Buffer<T>::GetData() {
   return this->_data;
 }
+}}

@@ -1,5 +1,8 @@
 #include <graphics/texture.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Texture::Texture() {
   glGenTextures(1, RefGLId());
 }

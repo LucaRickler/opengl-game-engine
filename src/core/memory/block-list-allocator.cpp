@@ -1,5 +1,7 @@
 #include <core/memory/block-list-allocator.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 BlockListAllocator::BlockListAllocator(void* start, size_t size) : Allocator(start, size), _free_blocks((FreeBlock*)start) {

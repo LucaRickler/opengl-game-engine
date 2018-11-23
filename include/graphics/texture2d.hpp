@@ -4,6 +4,7 @@
 #include <graphics/texture.hpp>
 #include <string>
 
+namespace MoonBeam { namespace Graphics {
 class Texture2D : public Texture {
 public:
   Texture2D(int width, int height);
@@ -14,5 +15,6 @@ public:
 private:
   std::string _filepath;
 };
+}}
 
 #endif

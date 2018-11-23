@@ -1,5 +1,8 @@
 #include <graphics/compute-material.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 ComputeMaterial::ComputeMaterial() {}
 
 ComputeMaterial::~ComputeMaterial() {}

@@ -4,6 +4,7 @@
 #include <dependencies.hpp>
 #include <graphics/gl-object.hpp>
 
+namespace MoonBeam { namespace Graphics {
 class Texture : public GLObject {
 public:
   Texture();
@@ -19,5 +20,6 @@ protected:
   int _width;
   int _height;
 };
+}}
 
 #endif

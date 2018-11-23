@@ -5,6 +5,7 @@
 #include <graphics/gl-object.hpp>
 #include <string>
 
+namespace MoonBeam { namespace Graphics {
 class Shader : public GLObject {
 public:
   Shader();
@@ -24,4 +25,6 @@ protected:
   void CheckLinkErrors(unsigned int program);
   std::string* LoadShaderCode(const char* path);
 };
+}}
+
 #endif

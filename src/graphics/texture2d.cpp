@@ -3,6 +3,9 @@
 #include <stb_image.hpp>
 #include <sstream>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Texture2D::Texture2D(int width, int height) : Texture(width, height) {
   this->Bind();
   glActiveTexture(GL_TEXTURE0);
@@ -31,7 +34,7 @@ Texture2D::Texture2D(std::string filepath) : Texture() {
     stbi_image_free(data);
     std::stringstream message;
     message << "Failed to load texture: " << filepath;
-    throw Exception(message.str());
+    throw Core::Exception(message.str());
   }
 }
 

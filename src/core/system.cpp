@@ -1,5 +1,8 @@
 #include <core/system.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+
 System::System() {}
 
 System::~System() {}

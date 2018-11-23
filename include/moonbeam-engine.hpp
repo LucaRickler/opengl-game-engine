@@ -3,35 +3,36 @@
 
 #include <dependencies.hpp>
 
+namespace MoonBeam{
 class MoonBeamEngine {
 public:
   MoonBeamEngine();
   ~MoonBeamEngine();
 
-  SystemManager* GetSystemManager() const;
-  EntityManager* GetEntityManager() const;
-  ComponentManager* GetComponentManager() const;
+  Core::SystemManager* GetSystemManager() const;
+  Core::EntityManager* GetEntityManager() const;
+  Core::ComponentManager* GetComponentManager() const;
 
-  Window* CreateWindow(unsigned int width, unsigned int height);
+  Graphics::Window* CreateWindow(unsigned int width, unsigned int height);
 private:
   void* _memory;
-  Memory::Allocator* _main_allocator;
+  Core::Memory::Allocator* _main_allocator;
 
-  SystemManager* _sys_manager;
-  Memory::ProxyAllocator* _sys_proxy;
-  Memory::LinearAllocator* _sys_alloc;
+  Core::SystemManager* _sys_manager;
+  Core::Memory::ProxyAllocator* _sys_proxy;
+  Core::Memory::LinearAllocator* _sys_alloc;
 
-  EntityManager* _ent_manager;
-  Memory::ProxyAllocator* _ent_proxy;
-  Memory::LinearAllocator* _ent_alloc;
+  Core::EntityManager* _ent_manager;
+  Core::Memory::ProxyAllocator* _ent_proxy;
+  Core::Memory::LinearAllocator* _ent_alloc;
   
-  ComponentManager* _comp_manager;
-  Memory::ProxyAllocator* _comp_proxy;
-  Memory::LinearAllocator* _comp_alloc;
+  Core::ComponentManager* _comp_manager;
+  Core::Memory::ProxyAllocator* _comp_proxy;
+  Core::Memory::LinearAllocator* _comp_alloc;
 
-  Window* _window;
+  Graphics::Window* _window;
 
   size_t ComputeGlobalMemorySize();
 };
-
+}
 #endif

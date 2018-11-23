@@ -1,6 +1,9 @@
 #include <graphics/window.hpp>
 #include <core/exception.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Window::Window(unsigned int width, unsigned int height) {
   this->_height = height;
   this->_width = width;
@@ -22,14 +25,14 @@ void Window::Open() {
   _window = glfwCreateWindow(this->_width, this->_height, "LearnOpenGL", NULL, NULL);
   if (_window == NULL) {
     glfwTerminate();
-    throw Exception("Failed to create GLFW window");
+    throw Core::Exception("Failed to create GLFW window");
   }
 
   glfwMakeContextCurrent(_window);
   glfwSetFramebufferSizeCallback(_window, this->framebuffer_size_callback);
   
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-    throw Exception("Failed to initialize GLAD");
+    throw Core::Exception("Failed to initialize GLAD");
   }
   glfwSwapInterval(0);
 }

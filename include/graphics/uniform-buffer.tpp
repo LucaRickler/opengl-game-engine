@@ -1,5 +1,4 @@
-#include <graphics/gl-object.hpp>
-
+namespace MoonBeam { namespace Graphics {
 template <class T>
 UniformBuffer<T>::UniformBuffer(T* data, int point) : Buffer<T>(data){
   this->SetGLType(GL_UNIFORM_BUFFER);
@@ -16,3 +15,4 @@ UniformBuffer<T>::~UniformBuffer() {
   // glDeleteBuffers(this->_id);
 }
 
+}}

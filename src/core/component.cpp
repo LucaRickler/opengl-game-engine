@@ -1,5 +1,8 @@
 #include <core/component.hpp>
 
+using namespace MoonBeam;
+using namespace Core;
+
 Component::Component() {}
 
 Component::~Component() {}

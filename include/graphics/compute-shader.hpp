@@ -4,6 +4,7 @@
 #include <graphics/shader.hpp>
 #include <string>
 
+namespace MoonBeam { namespace Graphics {
 class ComputeShader : public Shader {
 public:
   ComputeShader();
@@ -11,5 +12,5 @@ public:
 
   void Load(std::string filepath);
 };
-
+}}
 #endif

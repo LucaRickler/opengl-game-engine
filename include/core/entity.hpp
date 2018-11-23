@@ -4,48 +4,51 @@
 #include <dependencies.hpp>
 #include <core/component-manager.hpp>
 
-class Entity {
-public:
-  Entity();
-  virtual ~Entity();
+namespace MoonBeam {
+  namespace Core {
+    class Entity {
+    public:
+      Entity();
+      virtual ~Entity();
 
-  EntityId GetEntityId() const;
-  bool IsActive() const;
+      EntityId GetEntityId() const;
+      bool IsActive() const;
 
-  void SetActive(bool state);
+      void SetActive(bool state);
 
-  virtual void OnEnable();
-  virtual void OnDisable();
+      virtual void OnEnable();
+      virtual void OnDisable();
 
-  template <class T>
-  T* AddComponent() {
-    return this->_comp_manager->CreateComponent<T>(this->GetEntityId());
+      template <class T>
+      T* AddComponent() {
+        return this->_comp_manager->CreateComponent<T>(this->GetEntityId());
+      }
+
+      template <class T>
+      void RemoveComponent() {
+        this->_comp_manager->DestroyComponent<T>(this->GetEntityId());
+      }
+
+      template <class T>
+      T* GetComponent() {
+        this->_comp_manager->GetComponent<T>(this->GetEntityId());
+      }
+
+      bool operator==(const Entity& other) const;
+      bool operator!=(const Entity& other) const;
+
+      friend class EntityManager;
+
+    protected:
+
+    private:
+      EntityId _id;
+      bool _active;
+
+      ComponentManager* _comp_manager;
+      EntityManager* _ent_manager;
+
+    };
   }
-
-  template <class T>
-  void RemoveComponent() {
-    this->_comp_manager->DestroyComponent<T>(this->GetEntityId());
-  }
-
-  template <class T>
-  T* GetComponent() {
-    this->_comp_manager->GetComponent<T>(this->GetEntityId());
-  }
-
-  bool operator==(const Entity& other) const;
-  bool operator!=(const Entity& other) const;
-
-  friend class EntityManager;
-
-protected:
-
-private:
-  EntityId _id;
-  bool _active;
-
-  ComponentManager* _comp_manager;
-  EntityManager* _ent_manager;
-
-};
-
+}
 #endif

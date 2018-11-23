@@ -4,6 +4,9 @@
 
 #include <algorithm>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 Material::Material() {}
 
 Material::~Material() {

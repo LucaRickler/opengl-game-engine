@@ -4,6 +4,7 @@
 #include <graphics/shader.hpp>
 #include <string>
 
+namespace MoonBeam { namespace Graphics {
 class DrawShader : public Shader {
 public:
   DrawShader();
@@ -11,5 +12,6 @@ public:
 
   void Load(const char* vertexPath, const char* fragmentPath);
 };
+}}
 
 #endif

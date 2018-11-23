@@ -3,72 +3,72 @@
 
 #include <iostream>
 
-void processInput(Window *window);
+void processInput(MoonBeam::Graphics::Window *window);
 
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
 int main() {
-  MoonBeamEngine engine;
-  SystemManager* sm = engine.GetSystemManager();
-  EntityManager* em = engine.GetEntityManager();
-  ComponentManager* cm = engine.GetComponentManager();
+  MoonBeam::MoonBeamEngine engine;
+  MoonBeam::Core::SystemManager* sm = engine.GetSystemManager();
+  MoonBeam::Core::EntityManager* em = engine.GetEntityManager();
+  MoonBeam::Core::ComponentManager* cm = engine.GetComponentManager();
 
-  Window* window = engine.CreateWindow(SCR_WIDTH, SCR_HEIGHT);
+  MoonBeam::Graphics::Window* window = engine.CreateWindow(SCR_WIDTH, SCR_HEIGHT);
 
-  GraphicSystem* gs = sm->CreateSystem<GraphicSystem>();
+  MoonBeam::Graphics::GraphicSystem* gs = sm->CreateSystem<MoonBeam::Graphics::GraphicSystem>();
 
-  Entity* cameraEnt = em->CreateEntity<Entity>();
-  Transform* cameraTransf = cameraEnt->AddComponent<Transform>();
+  MoonBeam::Core::Entity* cameraEnt = em->CreateEntity<MoonBeam::Core::Entity>();
+  MoonBeam::Transform* cameraTransf = cameraEnt->AddComponent<MoonBeam::Transform>();
   cameraTransf->SetPosition(glm::vec3(0.0f, 0.0f, 3.0f));
-  Camera* cam = cameraEnt->AddComponent<Camera>();
+  MoonBeam::Graphics::Camera* cam = cameraEnt->AddComponent<MoonBeam::Graphics::Camera>();
 
   gs->SetMainCamera(cam);
 
 
-  DrawShader shader;
+  MoonBeam::Graphics::DrawShader shader;
   try {
     shader.Load("./shaders/test.vert","./shaders/test.frag");
-  } catch(Exception& e) {
+  } catch(MoonBeam::Core::Exception& e) {
     std::cout << e.what() << std::endl;
     return -1;
   }
   shader.BindUniformBlock("Matrices", 0);
 
-  ComputeShader compute;
+  MoonBeam::Graphics::ComputeShader compute;
   try {
     compute.Load("./shaders/test.comp");
-  } catch(Exception& e) {
+  } catch(MoonBeam::Core::Exception& e) {
     std::cout << e.what() << std::endl;
     return -1;
   }
 
-  Texture2D *tex = new Texture2D(512,512);
+  MoonBeam::Graphics::Texture2D *tex = new MoonBeam::Graphics::Texture2D(512,512);
 
-  ComputeMaterial* compMat = new ComputeMaterial();
+  MoonBeam::Graphics::ComputeMaterial* compMat = new MoonBeam::Graphics::ComputeMaterial();
   compMat->SetTexture(GL_TEXTURE0, tex);
   compMat->SetShader(&compute);
   compMat->SetWorkGroups(512,512,1);
 
-  Material* drawMat = new Material();
+  MoonBeam::Graphics::Material* drawMat = new MoonBeam::Graphics::Material();
   drawMat->SetTexture(GL_TEXTURE0, tex);
   drawMat->SetShader(&shader);
 
-  Vertex v0 = Vertex::CreateVertex(glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), zero3);
-  Vertex v1 = Vertex::CreateVertex(glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f), zero3);
-  Vertex v2 = Vertex::CreateVertex(glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f), zero3);
-  Vertex v3 = Vertex::CreateVertex(glm::vec4(1.0f,  1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f), zero3);
+  MoonBeam::Graphics::Vertex v0 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v1 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v2 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(-1.0f,  1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v3 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(1.0f,  1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f), MoonBeam::Graphics::zero3);
   
-  Vertex v4 = Vertex::CreateVertex(glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f), zero3);
-  Vertex v5 = Vertex::CreateVertex(glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), zero3);
-  Vertex v6 = Vertex::CreateVertex(glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f), zero3);
-  Vertex v7 = Vertex::CreateVertex(glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f), zero3);
+  MoonBeam::Graphics::Vertex v4 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(0.5f, 0.5f, 0.0f, 1.0f), glm::vec2(1.0f, 1.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v5 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(0.5f, -0.5f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v6 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(-0.5f, -0.5f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f), MoonBeam::Graphics::zero3);
+  MoonBeam::Graphics::Vertex v7 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(-0.5f, 0.5f, 0.0f, 1.0f), glm::vec2(0.0f, 1.0f), MoonBeam::Graphics::zero3);
 
-  Mesh *m1 = new Mesh();
+  MoonBeam::Graphics::Mesh *m1 = new MoonBeam::Graphics::Mesh();
   m1->AddTri(v4, v5, v7);
   m1->AddTri(v5, v6, v7);
 
-  Model mod;
+  MoonBeam::Model mod;
   mod.SetMaterial(drawMat);
   mod.SetMesh(m1);
   
@@ -104,7 +104,7 @@ int main() {
   return 0;
 }
 
-void processInput(Window *window) {
+void processInput(MoonBeam::Graphics::Window *window) {
   if (window->GetKeyPressed(GLFW_KEY_ESCAPE))
     window->Close();
 }

@@ -1,6 +1,9 @@
 #include <catch2/catch.hpp>
 
 #include <moonbeam.hpp>
+
+using namespace MoonBeam;
+using namespace Core;
 using namespace Memory;
 
 TEST_CASE("PoolAllocator", "[Memory::PoolAllocator]") {

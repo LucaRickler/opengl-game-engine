@@ -1,5 +1,8 @@
 #include <graphics/gl-object.hpp>
 
+using namespace MoonBeam;
+using namespace Graphics;
+
 GLObject::GLObject() {}
 
 GLObject::~GLObject() {}
