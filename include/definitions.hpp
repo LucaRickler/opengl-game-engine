@@ -15,6 +15,7 @@ namespace MoonBeam {
     namespace Container {
       template <class T> class IdMap;
 
+      template <class T, class K> class FixedUnorderedMap;
     }
 
     class Exception;
