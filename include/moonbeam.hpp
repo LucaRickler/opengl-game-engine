@@ -13,6 +13,7 @@
 #include <core/memory/proxy-allocator.hpp>
 
 #include <core/container/id-map.hpp>
+#include <core/container/fixed-set.hpp>
 #include <core/container/fixed-unordered-map.hpp>
 
 #include <core/system.hpp>
