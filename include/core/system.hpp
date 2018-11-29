@@ -9,7 +9,7 @@ namespace MoonBeam {
   namespace Core {
     class System {
     public:
-      System();
+      System(Memory::LinearAllocator* allocator);
       virtual ~System();
 
       virtual void PreUpdate() = 0;
