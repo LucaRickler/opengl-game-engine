@@ -29,6 +29,12 @@ template <class T>
 void PoolAllocator<T>::Clear() {
   this->_used = 0;
   this->_number_allocated = 0;
+  uint8_t adjustment = this->AlignForwardAdjustment(_start, _alignment);
+  void* block = this->Add(_start, adjustment);
+  size_t numObjects = (_size-adjustment)/this->_block_size;
+  for(size_t i = 0; i < numObjects; i++) {
+    ((Block*)block)->occupied = false;
+  }
 }
 
 template <class T>
