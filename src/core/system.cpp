@@ -3,7 +3,9 @@
 using namespace MoonBeam;
 using namespace Core;
 
-System::System() {}
+System::System(Memory::LinearAllocator* allocator) {
+  this->_allocator = allocator;
+}
 
 System::~System() {}
 

@@ -26,14 +26,13 @@ namespace MoonBeam {
         if (iter != _systems.end() && iter->second != nullptr)
           return (T*)iter->second;
         
-        T* sys = _main_allocator->Allocate<T>(args...);
+        T* sys = _main_allocator->Allocate<T>(_main_allocator->AllocateAllocator<Memory::LinearAllocator>(this->_system_memory),args...);
 
         assert(sys != nullptr);
 
         sys->_id = tid;
         sys->_sys_manager = this;
         sys->_comp_manager = this->_comp_manager;
-        sys->_allocator = _main_allocator->AllocateAllocator<Memory::LinearAllocator>(this->_system_memory);
         _systems[tid] = sys;
         this->SortSystems();
         return sys;
