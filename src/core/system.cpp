@@ -20,3 +20,11 @@ bool System::IsActive() const {
 Memory::LinearAllocator* System::GetAllocator() {
   return this->_allocator;
 }
+
+ComponentManager* System::GetComponentManager() {
+  return this->_comp_manager;
+}
+
+SystemManager* System::GetSystemManager() {
+  return this->_sys_manager;
+}
