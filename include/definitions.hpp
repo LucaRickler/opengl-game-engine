@@ -44,16 +44,20 @@ namespace MoonBeam {
     class GLObject;
     class Window;
 
+    typedef unsigned long TextureId;
     class Texture;
     class Texture2D;
 
+    typedef unsigned long ShaderId;
     class Shader;
     class DrawShader;
     class ComputeShader;
 
+    typedef unsigned long MaterialId;
     class Material;
     class ComputeMaterial;
 
+    typedef unsigned long MeshId;
     struct Vertex;
     class Mesh;
 
