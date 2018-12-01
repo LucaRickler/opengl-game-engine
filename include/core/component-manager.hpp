@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <vector>
 
+#include <algorithm>
+
 namespace MoonBeam {
   namespace Core {
     class ComponentManager {
@@ -76,11 +78,13 @@ namespace MoonBeam {
 
       void DestroyComponent(const ComponentId& id);
 
-      template <class T>
-      ComponentIterator* GetComponentIterator() {
+      template <class T, typename F>
+      void IterateOnComponents(F function) {
         TypeId tid = Utils::GetTypeId<T>();
         assert(this->_components.find(tid) != this->_components.end());
-        return this->_components[tid].begin();
+        std::for_each(this->_components[tid].begin(), this->_components[tid].end(), [function](auto p){
+          function((T*)p.second);
+        });
       }
 
       ComponentManager(const ComponentManager&) = delete;

@@ -27,12 +27,15 @@ namespace MoonBeam {
       friend class SystemManager;
 
     protected:
-      template <class T>
-      ComponentIterator* GetComponentIterator() {
-        return this->_comp_manager->GetComponentIterator<T>();
+      template <class T, typename F>
+      void IterateOnComponents(F function) {
+        this->_comp_manager->IterateOnComponents<T>(function);
       }
 
       Memory::LinearAllocator* GetAllocator();
+
+      ComponentManager* GetComponentManager();
+      SystemManager* GetSystemManager();
 
     private:
       SystemId _id;
