@@ -16,7 +16,7 @@ ShaderId Material::GetShader() const {
 }
 
 void Material::Bind() {
-  //this->_shader->Bind();
+  // TODO
   std::for_each(_textures.begin(), _textures.end(), [] (std::pair<const unsigned int, Texture*>& p){
     glActiveTexture(p.first);
     p.second->Bind();

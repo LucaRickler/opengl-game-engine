@@ -28,8 +28,6 @@ unsigned int FixedUnorderedMap<K,V>::Insert(const K& key, const V& value) {
   if (this->Size() == this->MaxSize())
     return -1;
   pair_type* p = this->_pool->Allocate(pair_type(key,value));
-  // p->first = key;
-  // p->second = value;
   this->_map[this->Size() -1] = p;
   return this->Size() -1;
 }

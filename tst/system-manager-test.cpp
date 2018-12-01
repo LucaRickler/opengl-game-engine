@@ -8,7 +8,7 @@ using namespace Memory;
 
 class S1 : public System {
 public:
-  S1() {}
+  S1(LinearAllocator* allocator) : System(allocator) {}
   virtual ~S1() {}
   virtual void PreUpdate() {
     printf("S1 pre-update\n");
@@ -23,7 +23,7 @@ public:
 
 class S2 : public System {
 public:
-  S2() {}
+  S2(LinearAllocator* allocator) : System(allocator) {}
   virtual ~S2() {}
   virtual void PreUpdate() {
     printf("S2 pre-update\n");

@@ -30,15 +30,6 @@ int main() {
   MoonBeam::Graphics::MaterialId mid = gs->CreateMaterial();
   gs->BindShaderToMaterial(mid, sid);
 
-  // MoonBeam::Graphics::DrawShader shader;
-  // try {
-  //   shader.Load("./shaders/test.vert","./shaders/test.frag");
-  // } catch(MoonBeam::Core::Exception& e) {
-  //   std::cout << e.what() << std::endl;
-  //   return -1;
-  // }
-  // shader.BindUniformBlock("Matrices", 0);
-
   // MoonBeam::Graphics::ComputeShader compute;
   // try {
   //   compute.Load("./shaders/test.comp");
@@ -82,9 +73,7 @@ int main() {
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
-
-   //auto matrix = trasf->GetMatrix();
-  
+    
   while (!window->ShouldClose()) {
     // compMat->Bind();
     // compute.SetFloat("time", (float)glfwGetTime());
@@ -94,11 +83,7 @@ int main() {
 
     sm->Update();
 
-    // auto m2 = glm::rotate(matrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
-    trasf->SetRotation(glm::vec3(0,(float)glfwGetTime(),0));
-    // mod.SetMatrix(m2);
-    // mod.Draw();
-    
+    trasf->SetRotation(glm::vec3(0,(float)glfwGetTime(),0));    
     
     window->SwapBuffers();
     glfwPollEvents();
