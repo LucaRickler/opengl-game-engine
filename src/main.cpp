@@ -26,33 +26,37 @@ int main() {
   gs->SetMainCamera(cam);
 
 
-  MoonBeam::Graphics::DrawShader shader;
-  try {
-    shader.Load("./shaders/test.vert","./shaders/test.frag");
-  } catch(MoonBeam::Core::Exception& e) {
-    std::cout << e.what() << std::endl;
-    return -1;
-  }
-  shader.BindUniformBlock("Matrices", 0);
+  MoonBeam::Graphics::ShaderId sid = gs->LoadDrawShader("./shaders/test.vert","./shaders/test2.frag");
+  MoonBeam::Graphics::MaterialId mid = gs->CreateMaterial();
+  gs->BindShaderToMaterial(mid, sid);
 
-  MoonBeam::Graphics::ComputeShader compute;
-  try {
-    compute.Load("./shaders/test.comp");
-  } catch(MoonBeam::Core::Exception& e) {
-    std::cout << e.what() << std::endl;
-    return -1;
-  }
+  // MoonBeam::Graphics::DrawShader shader;
+  // try {
+  //   shader.Load("./shaders/test.vert","./shaders/test.frag");
+  // } catch(MoonBeam::Core::Exception& e) {
+  //   std::cout << e.what() << std::endl;
+  //   return -1;
+  // }
+  // shader.BindUniformBlock("Matrices", 0);
 
-  MoonBeam::Graphics::Texture2D *tex = new MoonBeam::Graphics::Texture2D(512,512);
+  // MoonBeam::Graphics::ComputeShader compute;
+  // try {
+  //   compute.Load("./shaders/test.comp");
+  // } catch(MoonBeam::Core::Exception& e) {
+  //   std::cout << e.what() << std::endl;
+  //   return -1;
+  // }
 
-  MoonBeam::Graphics::ComputeMaterial* compMat = new MoonBeam::Graphics::ComputeMaterial();
-  compMat->SetTexture(GL_TEXTURE0, tex);
-  compMat->SetShader(&compute);
-  compMat->SetWorkGroups(512,512,1);
+  // MoonBeam::Graphics::Texture2D *tex = new MoonBeam::Graphics::Texture2D(512,512);
 
-  MoonBeam::Graphics::Material* drawMat = new MoonBeam::Graphics::Material();
-  drawMat->SetTexture(GL_TEXTURE0, tex);
-  drawMat->SetShader(&shader);
+  // MoonBeam::Graphics::ComputeMaterial* compMat = new MoonBeam::Graphics::ComputeMaterial();
+  // compMat->SetTexture(GL_TEXTURE0, tex);
+  // compMat->SetShader(&compute);
+  // compMat->SetWorkGroups(512,512,1);
+
+  // MoonBeam::Graphics::Material* drawMat = new MoonBeam::Graphics::Material();
+  // drawMat->SetTexture(GL_TEXTURE0, tex);
+  // drawMat->SetShader(&shader);
 
   MoonBeam::Graphics::Vertex v0 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(1.0f, 0.0f), MoonBeam::Graphics::zero3);
   MoonBeam::Graphics::Vertex v1 = MoonBeam::Graphics::Vertex::CreateVertex(glm::vec4(-1.0f, -1.0f, 0.0f, 1.0f), glm::vec2(0.0f, 0.0f), MoonBeam::Graphics::zero3);
@@ -68,31 +72,32 @@ int main() {
   m1->AddTri(v4, v5, v7);
   m1->AddTri(v5, v6, v7);
 
-  MoonBeam::Model mod;
-  mod.SetMaterial(drawMat);
-  mod.SetMesh(m1);
+
+  MoonBeam::Core::Entity* quad = em->CreateEntity<MoonBeam::Core::Entity>();
+  MoonBeam::Transform* trasf = quad->AddComponent<MoonBeam::Transform>();
+  MoonBeam::Graphics::Model* mod = quad->AddComponent<MoonBeam::Graphics::Model>();
+  mod->SetMaterial(mid);
+  mod->SetMesh(m1);
   
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
 
-  auto matrix = mod.GetMatrix();
+   //auto matrix = trasf->GetMatrix();
   
   while (!window->ShouldClose()) {
-    sm->Update();
-
-    compMat->Bind();
-    compute.SetFloat("time", (float)glfwGetTime());
-    compMat->Dispatch();
+    // compMat->Bind();
+    // compute.SetFloat("time", (float)glfwGetTime());
+    // compMat->Dispatch();
 
     processInput(window);
 
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    sm->Update();
 
-    auto m2 = glm::rotate(matrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
-    mod.SetMatrix(m2);
-    mod.Draw();
+    // auto m2 = glm::rotate(matrix, (float)glfwGetTime(), glm::vec3(0.0f, 1.0f, 0.0f));
+    trasf->SetRotation(glm::vec3(0,(float)glfwGetTime(),0));
+    // mod.SetMatrix(m2);
+    // mod.Draw();
     
     
     window->SwapBuffers();
