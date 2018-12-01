@@ -24,28 +24,38 @@ unsigned int FixedUnorderedMap<K,V>::Size() {
 }
 
 template <class K, class V>
-unsigned int FixedUnorderedMap<K,V>::Insert(K&& key, V&& value) {
+unsigned int FixedUnorderedMap<K,V>::Insert(const K& key, const V& value) {
   if (this->Size() == this->MaxSize())
     return -1;
-  pair_type* p = this->_pool->Allocate();
-  p->first = key;
-  p->second = value;
+  pair_type* p = this->_pool->Allocate(pair_type(key,value));
+  // p->first = key;
+  // p->second = value;
   this->_map[this->Size() -1] = p;
   return this->Size() -1;
 }
 
+// template <class K, class V>
+// unsigned int FixedUnorderedMap<K,V>::Insert(const K& key) {
+//   if (this->Size() == this->MaxSize())
+//     return -1;
+//   pair_type* p = this->_pool->Allocate<pair_type>();
+//   p->key = key;
+//   this->_map[this->Size() -1] = p;
+//   return this->Size() -1;
+// }
+
 template <class K, class V>
-void FixedUnorderedMap<K,V>::Erase(K&& key) {
-  unsigned int index = this->Find(std::forward<K>(key));
+void FixedUnorderedMap<K,V>::Erase(const K& key) {
+  unsigned int index = this->Find(key);
   this->Erase(index);
 }
 
 template <class K, class V>
 void FixedUnorderedMap<K,V>::Erase(unsigned int index) {
   if (index < 0 || index >= _size) return;
-  this->_pool->Dealocate(std::forward<pair_type>(*this->_map[index]));
+  this->_pool->Dealocate(*this->_map[index]);
   this->_map[index] = nullptr;
-  this->CompactSet();
+  this->CompactMap();
 }
 
 template <class K, class V>
@@ -60,9 +70,9 @@ void FixedUnorderedMap<K,V>::Empty() {
 }
 
 template <class K, class V>
-unsigned int FixedUnorderedMap<K,V>::Find(K&& key) {
+unsigned int FixedUnorderedMap<K,V>::Find(const K& key) {
   for (unsigned int i = 0; i < _size; i++) {
-    if (_map[i]->first == key)
+    if (_map[i]->key == key)
       return i;
   }
   return -1;
@@ -81,9 +91,10 @@ void FixedUnorderedMap<K,V>::CompactMap() {
 
 
 template <class K, class V>
-V& FixedUnorderedMap<K,V>::operator[](K&& key) const {
-  unsigned int index = this->Find(std::forward<K>(key));
-  return *this->_map[index];
+V& FixedUnorderedMap<K,V>::operator[](const K& key) {
+  unsigned int index = this->Find(key);
+  //if (index < 0) this->Insert(key);
+  return this->_map[index]->value;
 }
 
 }}}

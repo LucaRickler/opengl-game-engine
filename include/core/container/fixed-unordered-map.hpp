@@ -14,22 +14,33 @@ public:
   unsigned int MaxSize();
   unsigned int Size();
 
-  unsigned int Insert(K&& key, V&& value);
+  unsigned int Insert(const K& key, const V& value);
+  // unsigned int Insert(const K& key);
   
-  void Erase(K&& key);
+  void Erase(const K& key);
   void Erase(unsigned int index);
   void Erase(unsigned int min, unsigned int max);
 
   void Empty();
 
-  unsigned int Find(K&& key);
+  unsigned int Find(const K& key);
 
-  V& operator[](K&& key) const;
+  V& operator[](const K& key);
 
 protected:
 
 private:
-  typedef std::pair<K,V> pair_type;
+  class pair_type {
+  public:
+    K key;
+    V value;
+    pair_type() {}
+    pair_type(const K& key, const V& value) {
+      this->key = key;
+      this->value = value;
+    }
+  };
+
   Memory::Allocator* _allocator;
   Memory::PoolAllocator<pair_type>* _pool;
 
