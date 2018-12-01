@@ -9,23 +9,21 @@ using namespace Graphics;
 
 Material::Material() {}
 
-Material::~Material() {
-  delete this->_shader;
-}
+Material::~Material() {}
 
-Shader* const Material::GetShader() const {
-  return (Shader* const)this->_shader;
+ShaderId Material::GetShader() const {
+  return this->_shader;
 }
 
 void Material::Bind() {
-  this->_shader->Bind();
+  //this->_shader->Bind();
   std::for_each(_textures.begin(), _textures.end(), [] (std::pair<const unsigned int, Texture*>& p){
     glActiveTexture(p.first);
     p.second->Bind();
   });
 }
 
-void Material::SetShader(Shader* shader) {
+void Material::SetShader(const ShaderId& shader) {
   this->_shader = shader;
 }
 

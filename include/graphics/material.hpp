@@ -12,13 +12,13 @@ public:
 
   void Bind();
 
-  Shader* const GetShader() const;
+  ShaderId GetShader() const;
   
-  void SetShader(Shader* shader);
+  void SetShader(const ShaderId& shader);
   void SetTexture(unsigned int index, Texture* tex);
 
 private:
-  Shader* _shader;
+  ShaderId _shader;
   std::map<unsigned int, Texture*> _textures;
 };
 }}
