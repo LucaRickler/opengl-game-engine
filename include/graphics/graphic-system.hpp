@@ -8,24 +8,29 @@
 namespace MoonBeam { namespace Graphics {
 class GraphicSystem : public MoonBeam::Core::System {
 public:
-  GraphicSystem();
+  GraphicSystem(Core::Memory::LinearAllocator* allocator);
   ~GraphicSystem() override;
 
   void SetMainCamera(Camera* cam);
   Camera* GetMainCamera() const;
 
-  DrawShader* LoadDrawShader(const std::string& name, const char* vertexPath, const char* fragmentPath);
-  DrawShader* GetDrawShader(const std::string& name);
-  void DestroyDrawShader(const std::string& name);
+  ShaderId LoadDrawShader(const char* vertexPath, const char* fragmentPath);
+  DrawShader* GetDrawShader(const ShaderId& id);
+  void DestroyDrawShader(const ShaderId& id);
 
-  ComputeShader* LoadComputeShader(const std::string& name, const std::string& filepath);
-  ComputeShader* GetComputeShader(const std::string& name);
-  void DestroyComputeShader(const std::string& name);
+  ShaderId LoadComputeShader(const std::string& filepath);
+  ComputeShader* GetComputeShader(const ShaderId& id);
+  void DestroyComputeShader(const ShaderId& id);
 
-  Texture2D* LoadTexture2D(const std::string& name, const std::string& filepath);
-  Texture2D* CreateTexture2D(const std::string& name, unsigned int width, unsigned int height);
-  Texture* GetTexture(const std::string& name);
-  void DestroyTexture(const std::string& name);
+  TextureId LoadTexture2D(const std::string& filepath);
+  TextureId CreateTexture2D(unsigned int width, unsigned int height);
+  Texture* GetTexture(const TextureId& id);
+  void DestroyTexture(const TextureId& id);
+
+  MaterialId CreateMaterial();
+  void DestroyMaterial(const MaterialId& id);
+  void BindTextureToMaterial(const MaterialId& mid, const TextureId& tid, unsigned int index);
+  void BindShaderToMaterial(const MaterialId& mid, const ShaderId& sid);
 
   void PreUpdate() override;
   void Update() override;
@@ -34,15 +39,21 @@ public:
 private:
   Camera* _main_camera;
 
-  Shader** _shaders;
-  Texture** _textures;
-  Material** _materials;
+  Core::Container::FixedUnorderedMap<ShaderId, void*>* _shaders;
+  Core::Container::FixedUnorderedMap<ShaderId, DrawShader>* _draw_shaders;
+  Core::Container::FixedUnorderedMap<ShaderId, ComputeShader>* _comp_shaders;
+  Core::Container::FixedUnorderedMap<TextureId, void*>* _textures;
+  Core::Container::FixedUnorderedMap<TextureId, Texture2D>* _textures_2d;
+  Core::Container::FixedUnorderedMap<MaterialId, Material>* _materials;
 
   UniformBuffer<TransfMatrices> _matrices_buffer;
   TransfMatrices _matrices;
 
   void UpdateUniforms();
-
+  
+  ShaderId GetShaderId();
+  TextureId GetTextureId();
+  MaterialId GetMaterialId();
 };
 }}
 
