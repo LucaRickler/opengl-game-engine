@@ -38,7 +38,7 @@
 #include <graphics/compute-material.hpp>
 #include <graphics/vertex.hpp>
 #include <graphics/mesh.hpp>
-#include <model.hpp>
+#include <graphics/model.hpp>
 #include <graphics/camera.hpp>
 
 #include <graphics/graphic-system.hpp>

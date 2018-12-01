@@ -37,8 +37,6 @@ namespace MoonBeam {
   }
 
   class Transform;
-  class Model;
-
 
   namespace Graphics {
     class GLObject;
@@ -60,6 +58,8 @@ namespace MoonBeam {
     typedef unsigned long MeshId;
     struct Vertex;
     class Mesh;
+
+    class Model;
 
     class Camera;
 
