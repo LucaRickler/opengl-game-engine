@@ -87,6 +87,15 @@ namespace MoonBeam {
         });
       }
 
+      template <class T>
+      unsigned int CountComponents() {
+        TypeId tid = Utils::GetTypeId<T>();
+        if (this->_components.find(tid) != this->_components.end()) {
+          return this->_components[tid].count;
+        }
+        return 0;
+      }
+
       ComponentManager(const ComponentManager&) = delete;
       ComponentManager& operator=(ComponentManager&) = delete;
 
