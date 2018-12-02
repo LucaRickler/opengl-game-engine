@@ -6,9 +6,9 @@ using namespace MoonBeam;
 using namespace Graphics;
 
 Camera::Camera() : _up(0.0f, 1.0f, 0.0f), _target(0.0f, 0.0f, 0.0f) {
-  this->_far = 0.1f;
+  this->_near = 0.1f;
   this->_fow = 45.0f;
-  this->_near = 100.0f;
+  this->_far = 50.0f;
   this->_ratio = 800.0f/600.0f;
 }
 
