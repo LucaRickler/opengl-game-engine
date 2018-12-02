@@ -1,7 +1,4 @@
 #include <moonbeam.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-
-#include <iostream>
 
 void processInput(MoonBeam::Graphics::Window *window);
 
@@ -83,13 +80,12 @@ int main() {
 
     sm->Update();
 
-    trasf->SetRotation(glm::vec3(0,(float)glfwGetTime(),0));    
+    trasf->SetRotation(glm::vec3(0,(float)glfwGetTime(),0));
     
     window->SwapBuffers();
     glfwPollEvents();
   }
-    
-  //delete window;
+  
   //glfwTerminate();
   return 0;
 }
