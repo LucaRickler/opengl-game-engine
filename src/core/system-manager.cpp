@@ -35,6 +35,7 @@ void SystemManager::Update() {
 }
 
 void SystemManager::SortSystems() {
+  this->_execution_order.clear();
   std::unordered_map<System*, int> indegree;
   for (auto iter = this->_systems.begin(); iter != this->_systems.end(); iter++)
     indegree[iter->second] = 0;
