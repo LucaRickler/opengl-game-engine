@@ -19,6 +19,7 @@ int main() {
   MoonBeam::Transform* cameraTransf = cameraEnt->AddComponent<MoonBeam::Transform>();
   cameraTransf->SetPosition(glm::vec3(0.0f, 0.0f, 3.0f));
   MoonBeam::Graphics::Camera* cam = cameraEnt->AddComponent<MoonBeam::Graphics::Camera>();
+  cam->SetFar(10);
 
   gs->SetMainCamera(cam);
 
@@ -61,6 +62,17 @@ int main() {
   m1->AddTri(v5, v6, v7);
 
 
+  MoonBeam::Graphics::ShaderId sid2 = gs->LoadDrawShader("./shaders/test.vert","./shaders/test3.frag");
+  MoonBeam::Graphics::MaterialId mid2 = gs->CreateMaterial();
+  gs->BindShaderToMaterial(mid2, sid2);
+
+  MoonBeam::Core::Entity* quad2 = em->CreateEntity<MoonBeam::Core::Entity>();
+  MoonBeam::Transform* trasf2 = quad2->AddComponent<MoonBeam::Transform>();
+  trasf2->SetPosition(glm::vec3(1,1,-1));
+  MoonBeam::Graphics::Model* mod2 = quad2->AddComponent<MoonBeam::Graphics::Model>();
+  mod2->SetMaterial(mid2);
+  mod2->SetMesh(m1);
+
   MoonBeam::Core::Entity* quad = em->CreateEntity<MoonBeam::Core::Entity>();
   MoonBeam::Transform* trasf = quad->AddComponent<MoonBeam::Transform>();
   MoonBeam::Graphics::Model* mod = quad->AddComponent<MoonBeam::Graphics::Model>();
@@ -70,7 +82,8 @@ int main() {
     // uncomment this call to draw in wireframe polygons.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
   glEnable(GL_DEPTH_TEST);
-    
+  //glDepthFunc(GL_LESS);
+
   while (!window->ShouldClose()) {
     // compMat->Bind();
     // compute.SetFloat("time", (float)glfwGetTime());
