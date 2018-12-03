@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include <moonbeam.hpp>
+#include <moonbeam/moonbeam.hpp>
 
 using namespace MoonBeam;
 using namespace Core;

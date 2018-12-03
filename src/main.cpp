@@ -1,4 +1,4 @@
-#include <moonbeam.hpp>
+#include <moonbeam/moonbeam.hpp>
 
 void processInput(MoonBeam::Graphics::Window *window);
 
