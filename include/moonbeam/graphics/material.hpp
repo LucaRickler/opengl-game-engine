@@ -10,8 +10,6 @@ public:
   Material();
   virtual ~Material();
 
-  void Bind();
-
   ShaderId GetShader() const;
   
   void SetShader(const ShaderId& shader);

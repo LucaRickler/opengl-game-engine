@@ -153,14 +153,12 @@ void GraphicSystem::Update() {
     s->Bind();
     Transform* t = GetComponentManager()->GetComponent<Transform>(mod->GetEntityId());
     s->SetMat4("model", t->GetTrasformMatrix());
-    //m->Bind();
     std::for_each(m->GetTexutres().begin(), m->GetTexutres().end(), [this](auto p) {
       glActiveTexture(p.first);
       (*this->_textures)[p.second]->Bind();
     });
 
     mod->GetMesh()->Draw();
-    //TODO
   });
 
   
