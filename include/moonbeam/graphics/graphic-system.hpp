@@ -42,7 +42,7 @@ private:
   Core::Container::FixedUnorderedMap<ShaderId, void*>* _shaders;
   Core::Container::FixedUnorderedMap<ShaderId, DrawShader>* _draw_shaders;
   Core::Container::FixedUnorderedMap<ShaderId, ComputeShader>* _comp_shaders;
-  Core::Container::FixedUnorderedMap<TextureId, void*>* _textures;
+  Core::Container::FixedUnorderedMap<TextureId, Texture*>* _textures;
   Core::Container::FixedUnorderedMap<TextureId, Texture2D>* _textures_2d;
   Core::Container::FixedUnorderedMap<MaterialId, Material>* _materials;
 

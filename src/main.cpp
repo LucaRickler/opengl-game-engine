@@ -24,7 +24,7 @@ int main() {
   gs->SetMainCamera(cam);
 
 
-  MoonBeam::Graphics::ShaderId sid = gs->LoadDrawShader("./shaders/test.vert","./shaders/test2.frag");
+  MoonBeam::Graphics::ShaderId sid = gs->LoadDrawShader("./shaders/test.vert","./shaders/test.frag");
   MoonBeam::Graphics::MaterialId mid = gs->CreateMaterial();
   gs->BindShaderToMaterial(mid, sid);
 
@@ -42,6 +42,9 @@ int main() {
   // compMat->SetTexture(GL_TEXTURE0, tex);
   // compMat->SetShader(&compute);
   // compMat->SetWorkGroups(512,512,1);
+
+  MoonBeam::Graphics::TextureId texid = gs->LoadTexture2D("./resources/test_texture.png");
+  gs->BindTextureToMaterial(mid, texid, GL_TEXTURE0);
 
   // MoonBeam::Graphics::Material* drawMat = new MoonBeam::Graphics::Material();
   // drawMat->SetTexture(GL_TEXTURE0, tex);

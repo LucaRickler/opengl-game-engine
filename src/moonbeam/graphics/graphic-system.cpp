@@ -14,6 +14,8 @@
 #include <moonbeam/graphics/camera.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <algorithm>
+
 using namespace MoonBeam;
 using namespace Graphics;
 
@@ -23,12 +25,16 @@ GraphicSystem::GraphicSystem(Core::Memory::LinearAllocator* allocator) : System(
   //TODO: max items in configuration
   this->_draw_shaders = GetAllocator()->Allocate<FixedUnorderedMap<ShaderId, DrawShader>>(GetAllocator(), 200);
   this->_comp_shaders = GetAllocator()->Allocate<FixedUnorderedMap<ShaderId, ComputeShader>>(GetAllocator(), 100);
-  //this->_textures_2d = GetAllocator()->Allocate<FixedUnorderedMap<TextureId, Texture2D>>(GetAllocator(), 1000);
+  this->_textures = GetAllocator()->Allocate<FixedUnorderedMap<TextureId, Texture*>>(GetAllocator(), 300);
+  this->_textures_2d = GetAllocator()->Allocate<FixedUnorderedMap<TextureId, Texture2D>>(GetAllocator(), 100);
   this->_materials = GetAllocator()->Allocate<FixedUnorderedMap<MaterialId, Material>>(GetAllocator(), 100);
 
 }
 
 GraphicSystem::~GraphicSystem() {}
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 void GraphicSystem::SetMainCamera(Camera* cam) {
   if (cam != nullptr)
@@ -39,6 +45,9 @@ Camera* GraphicSystem::GetMainCamera() const {
   return this->_main_camera;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
 ShaderId GraphicSystem::LoadDrawShader(const char* vertexPath, const char* fragmentPath) {
   ShaderId id = GetShaderId();
   this->_draw_shaders->Insert(id, DrawShader());
@@ -46,7 +55,7 @@ ShaderId GraphicSystem::LoadDrawShader(const char* vertexPath, const char* fragm
     (*this->_draw_shaders)[id].Load(vertexPath, fragmentPath);
   } catch(Core::Exception& e) {
     std::cout << e.what() << std::endl;
-    return -1;
+    exit(-1);
   }
   (*this->_draw_shaders)[id].BindUniformBlock("Matrices", 0);
   return id;
@@ -59,6 +68,9 @@ void GraphicSystem::DestroyDrawShader(const ShaderId& id) {
   this->_draw_shaders->Erase(id);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
 ShaderId GraphicSystem::LoadComputeShader(const std::string& filepath) {
   ShaderId id = GetShaderId();
   this->_comp_shaders->Insert(id, ComputeShader());
@@ -66,7 +78,7 @@ ShaderId GraphicSystem::LoadComputeShader(const std::string& filepath) {
     (*this->_comp_shaders)[id].Load(filepath);
   } catch(Core::Exception& e) {
     std::cout << e.what() << std::endl;
-    return -1;
+    exit(-1);
   }
   return id;
 }
@@ -75,10 +87,33 @@ void GraphicSystem::DestroyComputeShader(const ShaderId& id) {
   this->_comp_shaders->Erase(id);
 }
 
-// TextureId GraphicSystem::LoadTexture2D(const std::string& filepath);
-// TextureId GraphicSystem::CreateTexture2D(unsigned int width, unsigned int height);
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+TextureId GraphicSystem::LoadTexture2D(const std::string& filepath) {
+  TextureId id = GetTextureId();
+  try {
+    this->_textures_2d->Insert(id, Texture2D(filepath));
+    this->_textures->Insert(id, &(*this->_textures_2d)[id]);
+  } catch (Core::Exception& e) {
+    std::cout << e.what() << std::endl;
+    exit(-1);
+  }
+  return id;
+}
+TextureId GraphicSystem::CreateTexture2D(unsigned int width, unsigned int height) {
+  TextureId id = GetTextureId();
+  this->_textures_2d->Insert(id, Texture2D(width, height));
+  this->_textures->Insert(id, &(*this->_textures_2d)[id]);
+  return id;
+}
 // Texture* GraphicSystem::GetTexture(const TextureId& id);
-// void GraphicSystem::DestroyTexture(const TextureId& id);
+// void GraphicSystem::DestroyTexture(const TextureId& id) {
+
+// }
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 MaterialId GraphicSystem::CreateMaterial() {
   MaterialId id = GetMaterialId();
@@ -91,12 +126,15 @@ void GraphicSystem::DestroyMaterial(const MaterialId& id) {
 }
 
 void GraphicSystem::BindTextureToMaterial(const MaterialId& mid, const TextureId& tid, unsigned int index) {
-  (*this->_materials)[mid].SetTexture(index, &(*this->_textures_2d)[tid]);
+  (*this->_materials)[mid].SetTexture(index, tid);
 }
 
 void GraphicSystem::BindShaderToMaterial(const MaterialId& mid, const ShaderId& sid) {
   (*this->_materials)[mid].SetShader(sid);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 void GraphicSystem::PreUpdate() {
 
@@ -115,7 +153,12 @@ void GraphicSystem::Update() {
     s->Bind();
     Transform* t = GetComponentManager()->GetComponent<Transform>(mod->GetEntityId());
     s->SetMat4("model", t->GetTrasformMatrix());
-    m->Bind();
+    //m->Bind();
+    std::for_each(m->GetTexutres().begin(), m->GetTexutres().end(), [this](auto p) {
+      glActiveTexture(p.first);
+      (*this->_textures)[p.second]->Bind();
+    });
+
     mod->GetMesh()->Draw();
     //TODO
   });
@@ -126,6 +169,9 @@ void GraphicSystem::Update() {
 void GraphicSystem::PostUpdate() {
   
 }
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 void GraphicSystem::UpdateUniforms() {
   this->_matrices.view = glm::lookAt(_main_camera->GetPosition(), _main_camera->GetTarget(), _main_camera->GetUp());

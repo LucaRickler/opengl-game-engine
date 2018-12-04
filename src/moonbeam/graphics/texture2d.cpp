@@ -6,6 +6,8 @@
 using namespace MoonBeam;
 using namespace Graphics;
 
+Texture2D::Texture2D() {}
+
 Texture2D::Texture2D(int width, int height) : Texture(width, height) {
   this->Bind();
   glActiveTexture(GL_TEXTURE0);
@@ -27,7 +29,7 @@ Texture2D::Texture2D(std::string filepath) : Texture() {
   int nrChannels;
   unsigned char *data = stbi_load(filepath.c_str(), &this->_width, &this->_height, &nrChannels, 0);
   if (data) {
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->_width, this->_height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this->_width, this->_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(data);
   } else {

@@ -19,6 +19,8 @@ public:
 protected:
   int _width;
   int _height;
+
+  std::string _filepath;
 };
 }}
 
